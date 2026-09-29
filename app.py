@@ -24,7 +24,7 @@ from bs4 import BeautifulSoup
 
 # ----------------- PAGE CONFIG -----------------
 st.set_page_config(
-    page_title="Amazon Intelligence - AI Sentiment & Market Analytics",
+    page_title="MarketMind Amazon - AI Sentiment & Market Intelligence",
     page_icon="https://www.amazon.com/favicon.ico",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -873,7 +873,7 @@ with st.sidebar:
             {SVG_PACKAGE}
         </div>
         <div>
-            <h3 style="margin:0; color:#0F172A; font-weight:800; font-size:1.15rem; letter-spacing:-0.02em;">Amazon<span style="color:#FF9900;">AI</span></h3>
+            <h3 style="margin:0; color:#0F172A; font-weight:800; font-size:1.15rem; letter-spacing:-0.02em;">MarketMind <span style="color:#FF9900;">Amazon</span></h3>
             <span style="font-size:0.72rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;">Enterprise Intelligence</span>
         </div>
     </div>
@@ -923,7 +923,8 @@ with st.sidebar:
 # ----------------- HERO BANNER -----------------
 st.markdown("""
 <div class="hero-container">
-    <h1 class="hero-title">Amazon Product Sentiment & Market Health</h1>
+    <h1 class="hero-title">MarketMind Amazon</h1>
+    <p style="margin:4px 0 0 0; color:#94A3B8; font-size:1.05rem; font-weight:500;">Product Sentiment & Market Health Intelligence System</p>
 </div>
 """, unsafe_allow_html=True)
 

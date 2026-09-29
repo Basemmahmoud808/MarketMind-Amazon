@@ -1,5 +1,5 @@
-# 📦 Amazon Product Reviews - AI Sentiment Analysis & Business Intelligence
-### مشروع التخرج النهائي لدورة تحليل البيانات بالذكاء الاصطناعي (Ai Data Analysis - Horus)
+# 📦 MarketMind Amazon - AI Sentiment Analysis & Market Intelligence
+### مشروع التخرج النهائي لدورة تحليل البيانات بالذكاء الاصطناعي (AI Data Analysis - Horus)
 **إشراف المهندسة:** آية بدوي (Eng. Aya Badwy)  
 **الأكاديمية:** Growth Level Academy
 
