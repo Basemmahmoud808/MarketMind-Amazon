@@ -288,7 +288,7 @@ st.markdown("""
 # ----------------- CACHED RESOURCES -----------------
 @st.cache_resource
 def load_ml_assets():
-    base_dir = os.path.dirname(__file__)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     model_path = os.path.join(base_dir, "models", "sentiment_model.pkl")
     vec_path = os.path.join(base_dir, "models", "tfidf_vectorizer.pkl")
     meta_path = os.path.join(base_dir, "models", "model_comparison.json")
@@ -301,7 +301,7 @@ def load_ml_assets():
 
 @st.cache_data
 def load_full_amazon_data():
-    base_dir = os.path.dirname(__file__)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     raw_path = os.path.join(base_dir, "data", "raw", "amazon_reviews_raw.csv")
     if os.path.exists(raw_path):
         df = pd.read_csv(raw_path)
@@ -898,7 +898,7 @@ with st.sidebar:
     """)
     st.markdown("---")
     st.markdown("##### التوثيق والتقارير الفنية")
-    excel_en_path = os.path.join(os.path.dirname(__file__), "models_benchmark_evaluation_en.xlsx")
+    excel_en_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models_benchmark_evaluation_en.xlsx")
     if os.path.exists(excel_en_path):
         with open(excel_en_path, "rb") as f_en:
             st.download_button(
@@ -908,7 +908,7 @@ with st.sidebar:
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 use_container_width=True
             )
-    excel_report_path = os.path.join(os.path.dirname(__file__), "models_benchmark_report.xlsx")
+    excel_report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models_benchmark_report.xlsx")
     if os.path.exists(excel_report_path):
         with open(excel_report_path, "rb") as f_excel:
             st.download_button(
