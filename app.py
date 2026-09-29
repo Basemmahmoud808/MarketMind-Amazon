@@ -876,54 +876,12 @@ def generate_buyer_seller_decision(reviews_df, avg_rating, csat_score, neg_ratio
 
 
 # ----------------- HERO BANNER -----------------
-st.markdown(f"""
+st.markdown("""
 <div class="hero-container">
-    <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.14); border-radius:9999px; padding:6px 18px; margin-bottom:14px; font-size:0.84rem; color:#E2E8F0;">
-        <span style="display:inline-flex; align-items:center; gap:6px;">{SVG_PACKAGE} <b>Horus AI Data Analysis</b></span>
-        <span style="color:#64748B;">•</span>
-        <span>Supervised by: <b style="color:#FFFFFF;">Eng. Aya Badwy</b></span>
-        <span style="color:#64748B;">•</span>
-        <span style="background:#065F46; color:#34D399; font-weight:800; padding:2px 10px; border-radius:9999px; font-size:0.78rem;">Production: Linear SVM 95.01% Acc</span>
-    </div>
     <h1 class="hero-title">MarketMind Amazon</h1>
     <p style="margin:4px 0 0 0; color:#94A3B8; font-size:1.05rem; font-weight:500;">Product Sentiment & Market Health Intelligence System</p>
 </div>
 """, unsafe_allow_html=True)
-
-# ----------------- BENCHMARK & EXCEL DOWNLOAD EXPANDER -----------------
-with st.expander("📊 التوثيق الأكاديمي وملفات مقارنة النماذج (Models Benchmark Excel)", expanded=False):
-    exp_b1, exp_b2, exp_b3 = st.columns([2, 1, 1])
-    with exp_b1:
-        st.markdown(f"""
-        <div style="padding:4px 0; font-size:0.88rem; color:#334155;">
-            <b>Algorithm:</b> <code>{metadata.get('best_model', 'Linear SVM (Calibrated)')}</code> &nbsp;|&nbsp;
-            <b>Test Accuracy:</b> <b style="color:#059669;">{metadata.get('final_accuracy', 0.9501)*100:.2f}%</b> &nbsp;|&nbsp;
-            <b>F1-Score:</b> <b style="color:#059669;">{metadata.get('final_f1', 0.9536)*100:.2f}%</b><br>
-            <span style="color:#64748B; font-size:0.82rem;">12,000 N-Gram Bilingual TF-IDF (Arabic + English) • 5-Fold Stratified Cross Validation • Native Joblib Binary</span>
-        </div>
-        """, unsafe_allow_html=True)
-    with exp_b2:
-        excel_en_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models_benchmark_evaluation_en.xlsx")
-        if os.path.exists(excel_en_path):
-            with open(excel_en_path, "rb") as f_en:
-                st.download_button(
-                    label="📊 Benchmark (Excel - EN)",
-                    data=f_en.read(),
-                    file_name="Models_Benchmark_Evaluation_EN.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    use_container_width=True
-                )
-    with exp_b3:
-        excel_report_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models_benchmark_report.xlsx")
-        if os.path.exists(excel_report_path):
-            with open(excel_report_path, "rb") as f_excel:
-                st.download_button(
-                    label="📥 تقرير النماذج (Excel - AR)",
-                    data=f_excel.read(),
-                    file_name="Models_Benchmark_Evaluation_AR.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                    use_container_width=True
-                )
 
 # ----------------- NAVIGATION TABS -----------------
 tab_product, tab_dashboard, tab_compare = st.tabs([
