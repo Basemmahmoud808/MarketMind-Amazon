@@ -320,12 +320,15 @@ def extract_asin(text_or_url: str) -> str:
     match = re.search(r'/(?:dp|gp/product|product)/([A-Z0-9]{10})', text_or_url, re.IGNORECASE)
     if match:
         return match.group(1).upper()
+    param_match = re.search(r'[?&](?:asin|pd_rd_i)=([A-Z0-9]{10})', text_or_url, re.IGNORECASE)
+    if param_match:
+        return param_match.group(1).upper()
     direct_match = re.match(r'^[A-Z0-9]{10}$', text_or_url, re.IGNORECASE)
     if direct_match:
         return text_or_url.upper()
-    param_match = re.search(r'[?&]asin=([A-Z0-9]{10})', text_or_url, re.IGNORECASE)
-    if param_match:
-        return param_match.group(1).upper()
+    standalone_match = re.search(r'\b([B0-9][A-Z0-9]{9})\b', text_or_url, re.IGNORECASE)
+    if standalone_match:
+        return standalone_match.group(1).upper()
     return ""
 
 def fetch_product_reviews(product_input: str):
@@ -334,7 +337,19 @@ def fetch_product_reviews(product_input: str):
         return None, "Invalid Product Identifier", "", False
 
     # 1. Live Amazon Fetch
-    domains = ["amazon.eg", "amazon.com", "amazon.sa", "amazon.ae", "amazon.co.uk"]
+    input_lower = product_input.lower()
+    base_domains = ["amazon.eg", "amazon.sa", "amazon.ae", "amazon.com", "amazon.co.uk"]
+    detected_domain = None
+    for d in base_domains:
+        if d in input_lower:
+            detected_domain = d
+            break
+    
+    if detected_domain:
+        domains = [detected_domain] + [d for d in base_domains if d != detected_domain]
+    else:
+        domains = base_domains
+
     curl_bin = shutil.which("curl") or shutil.which("curl.exe")
     
     for domain in domains:
@@ -346,20 +361,20 @@ def fetch_product_reviews(product_input: str):
                     curl_bin, "-s", "-L",
                     "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
                     "-H", "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-                    "-H", "Accept-Language: en-US,en;q=0.9",
+                    "-H", "Accept-Language: ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
                     url
                 ]
-                res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=8)
+                res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=9)
                 html = res.stdout
             else:
                 req = urllib.request.Request(
                     url,
                     headers={
                         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "Accept-Language": "en-US,en;q=0.9"
+                        "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"
                     }
                 )
-                with urllib.request.urlopen(req, timeout=8) as resp:
+                with urllib.request.urlopen(req, timeout=9) as resp:
                     html = resp.read().decode('utf-8', errors='ignore')
 
             if not html or "To discuss automated access to Amazon data" in html or "api-services-support@amazon.com" in html:
@@ -405,20 +420,20 @@ def fetch_product_reviews(product_input: str):
                     cmd_rev = [
                         curl_bin, "-s", "-L",
                         "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "-H", "Accept-Language: en-US,en;q=0.9",
+                        "-H", "Accept-Language: ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
                         rev_url
                     ]
-                    res_rev = subprocess.run(cmd_rev, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=8)
+                    res_rev = subprocess.run(cmd_rev, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=9)
                     soup_rev = BeautifulSoup(res_rev.stdout, "html.parser")
                 else:
                     req_rev = urllib.request.Request(
                         rev_url,
                         headers={
                             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                            "Accept-Language": "en-US,en;q=0.9"
+                            "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"
                         }
                     )
-                    with urllib.request.urlopen(req_rev, timeout=8) as resp_rev:
+                    with urllib.request.urlopen(req_rev, timeout=9) as resp_rev:
                         soup_rev = BeautifulSoup(resp_rev.read().decode('utf-8', errors='ignore'), "html.parser")
 
                 cards_rev = soup_rev.select('[data-hook="review"]')
