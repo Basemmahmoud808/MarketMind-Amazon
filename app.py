@@ -1,6 +1,6 @@
 """
-Amazon Product Reviews - AI Sentiment & Market Intelligence System
-Senior Enterprise Edition - Strictly Clean Vector Icons (No Emojis)
+MarketMind Amazon - AI Sentiment & Market Intelligence System
+Senior Enterprise Edition - 100% Full English Localization
 Course: AI Data Analysis (Horus Program - Growth Level) | Supervised by: Eng. Aya Badwy
 """
 
@@ -52,20 +52,20 @@ SVG_TABLE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke=
 SVG_GRID = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>'
 SVG_LAYERS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>'
 
-
 # ----------------- PROFESSIONAL SAAS DESIGN SYSTEM -----------------
 st.markdown("""
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
     * {
-        font-family: 'Plus Jakarta Sans', 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
     .stApp {
         background-color: #F8FAFC !important;
         color: #0F172A !important;
+        direction: ltr !important;
     }
     #MainMenu, footer, header {visibility: hidden;}
 
@@ -80,27 +80,12 @@ st.markdown("""
         position: relative;
         border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(255, 153, 0, 0.12);
-        border: 1px solid rgba(255, 153, 0, 0.3);
-        color: #FFB020;
-        padding: 4px 12px;
-        border-radius: 9999px;
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-    }
     .hero-title {
         font-size: 2.1rem;
         font-weight: 800;
         line-height: 1.25;
         letter-spacing: -0.025em;
-        margin: 0 0 8px 0;
+        margin: 0 0 6px 0;
         color: #FFFFFF !important;
     }
     .hero-subtitle {
@@ -159,38 +144,41 @@ st.markdown("""
         font-size: 2rem;
         font-weight: 800;
         color: #0F172A;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
         line-height: 1.1;
-        margin: 4px 0;
-        font-variant-numeric: tabular-nums;
+        margin-bottom: 6px;
     }
     .bento-delta {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 600;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 4px;
     }
     .delta-up { color: #059669; }
     .delta-down { color: #DC2626; }
     .delta-neutral { color: #64748B; }
 
-    /* Review Cards */
-    .modern-review-card {
+    /* Modern Review Card */
+    .review-card {
         background: #FFFFFF;
         border: 1px solid #E2E8F0;
-        border-radius: 12px;
-        padding: 16px 20px;
+        border-radius: 10px;
+        padding: 16px 18px;
         margin-bottom: 12px;
-        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+        transition: border-color 0.15s ease;
     }
-    .modern-review-header {
+    .review-card:hover {
+        border-color: #CBD5E1;
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .review-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 8px;
     }
-    .user-info {
+    .review-user-info {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -199,37 +187,34 @@ st.markdown("""
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #1E293B, #334155);
-        color: #FFFFFF;
+        background: #F1F5F9;
+        color: #475569;
+        font-weight: 700;
+        font-size: 0.8rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-weight: 700;
-        font-size: 0.82rem;
     }
     .user-name {
         font-weight: 700;
-        font-size: 0.92rem;
+        font-size: 0.88rem;
         color: #1E293B;
     }
-    
-    /* Pill Badges */
     .pill-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 10px;
-        border-radius: 9999px;
         font-size: 0.75rem;
         font-weight: 700;
-        letter-spacing: 0.02em;
+        padding: 3px 10px;
+        border-radius: 9999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
     }
-    .pill-badge-pos {
+    .pill-pos {
         background: #ECFDF5;
         color: #065F46;
         border: 1px solid #A7F3D0;
     }
-    .pill-badge-neg {
+    .pill-neg {
         background: #FEF2F2;
         color: #991B1B;
         border: 1px solid #FECACA;
@@ -238,10 +223,9 @@ st.markdown("""
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        display: inline-block;
     }
-    .status-dot-pos { background: #10B981; }
-    .status-dot-neg { background: #EF4444; }
+    .dot-pos { background: #10B981; }
+    .dot-neg { background: #EF4444; }
 
     .review-headline {
         font-weight: 700;
@@ -264,8 +248,8 @@ st.markdown("""
         height: 100%;
         box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
     }
-    .insight-pos { border-top: 3px solid #10B981; }
-    .insight-neg { border-top: 3px solid #EF4444; }
+    .insight-pos { border-top: 3.5px solid #10B981; }
+    .insight-neg { border-top: 3.5px solid #EF4444; }
 
     .stTextInput > div > div > input {
         border-radius: 8px !important;
@@ -333,79 +317,59 @@ def extract_asin(text_or_url: str) -> str:
     if not text_or_url:
         return ""
     text_or_url = text_or_url.strip()
-    if re.match(r'^[A-Z0-9]{10}$', text_or_url, re.IGNORECASE):
+    match = re.search(r'/(?:dp|gp/product|product)/([A-Z0-9]{10})', text_or_url, re.IGNORECASE)
+    if match:
+        return match.group(1).upper()
+    direct_match = re.match(r'^[A-Z0-9]{10}$', text_or_url, re.IGNORECASE)
+    if direct_match:
         return text_or_url.upper()
-    patterns = [
-        r'/dp/([A-Z0-9]{10})',
-        r'/product/([A-Z0-9]{10})',
-        r'/gp/product/([A-Z0-9]{10})',
-        r'pd_rd_i=([A-Z0-9]{10})',
-        r'asin=([A-Z0-9]{10})',
-        r'/d/([A-Z0-9]{10})'
-    ]
-    for p in patterns:
-        m = re.search(p, text_or_url, re.IGNORECASE)
-        if m:
-            return m.group(1).upper()
+    param_match = re.search(r'[?&]asin=([A-Z0-9]{10})', text_or_url, re.IGNORECASE)
+    if param_match:
+        return param_match.group(1).upper()
     return ""
 
-def fetch_product_reviews(asin_or_url: str):
-    asin = extract_asin(asin_or_url)
+def fetch_product_reviews(product_input: str):
+    asin = extract_asin(product_input)
     if not asin:
-        asin_match = re.search(r'([A-Z0-9]{10})', asin_or_url, re.I)
-        asin = asin_match.group(1).upper() if asin_match else "B0CM26LNMD"
-        
-    primary_domain = "amazon.eg"
-    for d in ["amazon.eg", "amazon.sa", "amazon.ae", "amazon.com", "amazon.co.uk"]:
-        if d in asin_or_url.lower():
-            primary_domain = d
-            break
-            
-    domains_to_try = [primary_domain]
-    for d in ["amazon.sa", "amazon.ae", "amazon.eg", "amazon.com"]:
-        if d not in domains_to_try:
-            domains_to_try.append(d)
+        return None, "Invalid Product Identifier", "", False
 
-    # Cross-Platform Live Scraper (shutil.which curl or urllib.request)
+    # 1. Live Amazon Fetch
+    domains = ["amazon.eg", "amazon.com", "amazon.sa", "amazon.ae", "amazon.co.uk"]
     curl_bin = shutil.which("curl") or shutil.which("curl.exe")
-    best_title = f"Amazon Product ({asin})"
-
-    for domain in domains_to_try:
+    
+    for domain in domains:
+        url = f"https://www.{domain}/dp/{asin}"
         try:
-            target_url = f"https://www.{domain}/dp/{asin}"
-            html_text = ""
+            html = ""
             if curl_bin:
                 cmd = [
                     curl_bin, "-s", "-L",
                     "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                    "-H", "Accept-Language: ar,en-US;q=0.9,en;q=0.8",
-                    "-H", "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                    target_url
+                    "-H", "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+                    "-H", "Accept-Language: en-US,en;q=0.9",
+                    url
                 ]
                 res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=8)
-                html_text = res.stdout
+                html = res.stdout
             else:
                 req = urllib.request.Request(
-                    target_url,
+                    url,
                     headers={
                         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-                        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+                        "Accept-Language": "en-US,en;q=0.9"
                     }
                 )
                 with urllib.request.urlopen(req, timeout=8) as resp:
-                    html_text = resp.read().decode('utf-8', errors='ignore')
+                    html = resp.read().decode('utf-8', errors='ignore')
 
-            soup = BeautifulSoup(html_text, "html.parser")
-            title_el = soup.select_one("#productTitle")
-            if title_el and title_el.text.strip():
-                best_title = title_el.text.strip()
-            elif soup.title and soup.title.string:
-                clean_t = soup.title.string.strip()
-                clean_t = re.sub(r'^(Amazon\.(?:com|eg|sa|ae|co\.uk):\s*)', '', clean_t)
-                clean_t = clean_t.split('|')[0].split(':')[0].strip()
-                if len(clean_t) > 3 and "Page Not Found" not in clean_t:
-                    best_title = clean_t
+            if not html or "To discuss automated access to Amazon data" in html or "api-services-support@amazon.com" in html:
+                continue
+
+            soup = BeautifulSoup(html, "html.parser")
+            
+            # Extract product title
+            title_node = soup.select_one("#productTitle") or soup.select_one("h1") or soup.select_one(".product-title")
+            best_title = title_node.text.strip() if title_node else f"Amazon Product ({asin})"
             
             cards = soup.select('[data-hook="review"]')
             live_reviews = []
@@ -422,7 +386,7 @@ def fetch_product_reviews(asin_or_url: str):
                     if m:
                         score = int(float(m.group(1)))
                 
-                a_txt = author.text.strip() if author else "مشتري أمازون"
+                a_txt = author.text.strip() if author else "Verified Amazon Customer"
                 t_txt = r_title.text.strip() if r_title else ""
                 b_txt = r_body.text.strip() if r_body else ""
                 
@@ -441,7 +405,7 @@ def fetch_product_reviews(asin_or_url: str):
                     cmd_rev = [
                         curl_bin, "-s", "-L",
                         "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "-H", "Accept-Language: ar,en-US;q=0.9,en;q=0.8",
+                        "-H", "Accept-Language: en-US,en;q=0.9",
                         rev_url
                     ]
                     res_rev = subprocess.run(cmd_rev, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=8)
@@ -451,7 +415,7 @@ def fetch_product_reviews(asin_or_url: str):
                         rev_url,
                         headers={
                             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                            "Accept-Language": "ar,en-US;q=0.9,en;q=0.8"
+                            "Accept-Language": "en-US,en;q=0.9"
                         }
                     )
                     with urllib.request.urlopen(req_rev, timeout=8) as resp_rev:
@@ -471,7 +435,7 @@ def fetch_product_reviews(asin_or_url: str):
                         if m:
                             score = int(float(m.group(1)))
                     
-                    a_txt = author.text.strip() if author else "مشتري أمازون"
+                    a_txt = author.text.strip() if author else "Verified Amazon Customer"
                     t_txt = r_title.text.strip() if r_title else ""
                     b_txt = r_body.text.strip() if r_body else ""
                     
@@ -484,25 +448,25 @@ def fetch_product_reviews(asin_or_url: str):
                         })
             
             if len(live_reviews) > 0:
-                return pd.DataFrame(live_reviews), f"Amazon Live Data ({domain})", best_title, False
+                return pd.DataFrame(live_reviews), f"Amazon Live Feed ({domain})", best_title, False
         except Exception:
             continue
 
-    # 2. Local 45,000 Dataset
+    # 2. Local 45,000 Dataset Match
     if df_raw is not None:
         sub = df_raw[df_raw['ProductId'].str.upper() == asin.upper()].copy()
         if len(sub) > 0:
             sample_title = sub['Summary'].dropna().iloc[0] if len(sub['Summary'].dropna()) > 0 else f"Amazon Product ({asin})"
             return sub, "Local Amazon Repository", sample_title, False
 
-    # 3. Dynamic Product-Aware Realistic Sandbox Simulation (Clearly Marked as Simulated)
+    # 3. Dynamic Product-Aware Realistic Sandbox Simulation
     sample_records = [
-        {"Score": 5, "ProfileName": "Ahmed Hassan", "Summary": "ممتاز وعالي الجودة", "Text": "المنتج أصلي تماماً ويعمل بكفاءة فائقة وسرعة التوصيل كانت ممتازة."},
-        {"Score": 5, "ProfileName": "David Miller", "Summary": "Exceeded all expectations", "Text": "Outstanding build quality and performance. Worth every penny spent."},
-        {"Score": 4, "ProfileName": "Sarah Mohamed", "Summary": "جيد جداً ومطابق للمواصفات", "Text": "خامات ممتازة وأداء مستقر جداً، التغليف فقط كان يحتاج عناية إضافية."},
-        {"Score": 5, "ProfileName": "Omar Khaled", "Summary": "انصح به بشدة", "Text": "تجربة استخدام رائعة وسعر تنافسي جداً مقارنة بالبدائل في السوق."},
-        {"Score": 2, "ProfileName": "Michael Scott", "Summary": "Minor defect after a week", "Text": "Performance was good initially, but encountered an issue with durability."},
-        {"Score": 5, "ProfileName": "Nour Ibrahim", "Summary": "قيمة ممتازة مقابل السعر", "Text": "الجهاز ممتاز وأصلي والتجربة العامة مرضية للغاية."}
+        {"Score": 5, "ProfileName": "Alexander Wright", "Summary": "Flawless Quality & Fast Delivery", "Text": "The unit arrived in pristine condition, fully genuine, and works seamlessly with exceptional performance."},
+        {"Score": 5, "ProfileName": "David Miller", "Summary": "Exceeded all expectations", "Text": "Outstanding build quality and performance. Worth every penny spent, definitely recommended."},
+        {"Score": 4, "ProfileName": "Sarah Jenkins", "Summary": "Solid build and reliable specs", "Text": "Great materials and stable performance overall. Outer packaging could have had sturdier protection."},
+        {"Score": 5, "ProfileName": "Emily Watson", "Summary": "Highly recommended purchase", "Text": "Wonderful customer experience and very competitive pricing compared to alternatives on the market."},
+        {"Score": 2, "ProfileName": "Michael Scott", "Summary": "Minor durability defect after a week", "Text": "Performance was good initially, but encountered an issue with component durability after moderate use."},
+        {"Score": 5, "ProfileName": "James Henderson", "Summary": "Exceptional value for price", "Text": "The device is genuine, sleek, and the overall buying experience was thoroughly satisfying."}
     ]
     return pd.DataFrame(sample_records), "Market Simulation Engine", f"Amazon Product ({asin})", True
 
@@ -520,25 +484,22 @@ def analyze_sentiment_bilingual(text: str, score: int = None):
     else:
         p_ml = 0.95 if pred_val == 1 else 0.05
 
-    # Ground-Truth Star Calibration when review rating (1 to 5) is available from Amazon
+    # Ground-Truth Star Calibration when review rating (1 to 5) is available
     if score is not None:
         score_val = float(score)
         if score_val >= 4.0:
-            # Customer awarded 4 or 5 stars -> Intrinsically satisfied/positive
             pos_prob = max(p_ml, 0.88 if score_val == 5.0 else 0.75)
             pred = "Positive"
         elif score_val <= 2.0:
-            # Customer awarded 1 or 2 stars -> Intrinsically dissatisfied/complaint
             pos_prob = min(p_ml, 0.12 if score_val == 1.0 else 0.25)
             pred = "Negative"
         else:
-            # 3 stars (Neutral) -> Resolved directly by the text ML probability
             pos_prob = p_ml
             pred = "Positive" if pos_prob >= 0.5 else "Negative"
     else:
-        # Raw text without star score -> Pure text ML inference
         pos_prob = p_ml
         pred = "Positive" if pos_prob >= 0.5 else "Negative"
+
     conf = float(max(pos_prob, 1.0 - pos_prob) * 100.0)
     engine_type = "Machine Learning (Calibrated Linear SVM)"
     return pred, conf, pos_prob, engine_type
@@ -573,17 +534,16 @@ def generate_dynamic_insights(reviews_df, prod_title=""):
                 unique_pos.append(q)
                 
         if unique_pos:
-            quotes_str = "، ".join([f'"{q}"' for q in unique_pos])
-            pro_bullets.append(f"<b>إشادة وإجماع على الجودة:</b> تكرار آراء إيجابية مباشرة من المشترين: <i>({quotes_str})</i>.")
+            quotes_str = ", ".join([f'"{q}"' for q in unique_pos])
+            pro_bullets.append(f"<b>Quality Acclaim & Verified Praise:</b> Recurring positive customer sentiment: <i>({quotes_str})</i>.")
         else:
-            pro_bullets.append("<b>إجماع على كفاءة المنتج:</b> أكد المشترون مطابقة المنتج للمواصفات المعلنة وجودة التجربة العامة.")
+            pro_bullets.append("<b>Specification Alignment:</b> Buyers verified that the product strictly matches catalog claims and delivers reliable performance.")
             
-        pro_bullets.append(f"<b>معدل ثقة وتأييد استثنائي:</b> حاز المنتج على تقييم إيجابي من <b>{pos_pct:.1f}%</b> من المشترين المفحوصين.")
-        
+        pro_bullets.append(f"<b>Customer Endorsement:</b> <b>{pos_pct:.1f}%</b> of evaluated purchasers expressed positive satisfaction.")
         avg_pos_score = pos_df['Score'].mean() if 'Score' in pos_df.columns else 5.0
-        pro_bullets.append(f"<b>قيمة شرائية ورضا عام:</b> متوسط تقييم الشريحة الإيجابية بلغ <b>{avg_pos_score:.1f} / 5.0</b> مع مؤشرات قوية على التوصية بالمنتج.")
+        pro_bullets.append(f"<b>High Purchase Satisfaction:</b> The positive segment achieved an average rating of <b>{avg_pos_score:.1f} / 5.0</b>.")
     else:
-        pro_bullets.append("<b>لا توجد تقييمات إيجابية كافية:</b> يحتاج المنتج إلى تحسين معايير الجودة لتلبية تطلعات المشترين.")
+        pro_bullets.append("<b>Insufficient Positive Signals:</b> Requires quality inspection to meet customer expectations.")
 
     # 2. NEGATIVE INSIGHTS
     con_bullets = []
@@ -605,17 +565,17 @@ def generate_dynamic_insights(reviews_df, prod_title=""):
                 unique_neg.append(q)
                 
         if unique_neg:
-            quotes_str = "، ".join([f'"{q}"' for q in unique_neg])
-            con_bullets.append(f"<b>أبرز الملاحظات والشكاوى المرصودة:</b> اعتراضات سجلها المشترون: <i>({quotes_str})</i>.")
+            quotes_str = ", ".join([f'"{q}"' for q in unique_neg])
+            con_bullets.append(f"<b>Key Operational Friction Points:</b> Customer objections registered: <i>({quotes_str})</i>.")
         else:
-            con_bullets.append("<b>ملاحظات تشغيلية واعتراضات:</b> تضمنت ملاحظات المشترين عدم ملاءمة بعض الجوانب لتوقعاتهم.")
+            con_bullets.append("<b>Operational Notes:</b> Certain buyers expressed minor expectation mismatches.")
             
-        con_bullets.append(f"<b>معدل المخاطر والاعتراض:</b> بلغت نسبة المراجعات السلبية <b>{neg_pct:.1f}%</b> ({neg_count} مراجعات) تتطلب فحصاً تشغيلياً.")
-        con_bullets.append("<b>توصية للبائع:</b> معالجة نقاط الاعتراض المرصودة ومتابعة أسباب الشكاوى لتحسين تجربة العملاء.")
+        con_bullets.append(f"<b>Defect & Risk Rate:</b> Negative sentiment rate stands at <b>{neg_pct:.1f}%</b> ({neg_count} reviews) requiring operational attention.")
+        con_bullets.append("<b>Merchant Directive:</b> Mitigate identified friction drivers to minimize return velocity and maintain high buy-box standing.")
     else:
-        con_bullets.append("<b>انعدام الشكاوى والاعتراضات الحرجة:</b> لم تُسجل أي مراجعات سلبية في عينة الفحص الحالية، مما يعكس استقراراً فائقاً.")
-        con_bullets.append("<b>مؤشر أمان تسويقي 100%:</b> معدل المخاطر 0% بين المشترين الذين تم فحص آرائهم، مع رضا تام عن المواصفات.")
-        con_bullets.append("<b>توصية استراتيجية للبائع:</b> الحفاظ على مستوى الجودة وتأمين توفر المخزون لتلبية الطلب المرتفع.")
+        con_bullets.append("<b>Zero Critical Defects:</b> No negative reviews recorded in the current sample, indicating superior operational consistency.")
+        con_bullets.append("<b>100% Marketing Safety Score:</b> 0% customer friction detected, with complete satisfaction across all evaluated buyers.")
+        con_bullets.append("<b>Strategic Seller Guidance:</b> Maintain consistent manufacturing quality and ensure inventory depth to capitalize on sustained demand.")
 
     return pro_bullets, con_bullets
 
@@ -623,11 +583,10 @@ def generate_dynamic_insights(reviews_df, prod_title=""):
 STORE_CATEGORIES_DATA = [
     {
         "id": "food_bev",
-        "name_ar": "الأغذية والمشروبات الفاخرة",
         "name_en": "Gourmet Food & Beverages",
-        "scope": "القهوة والشاي، الشوكولاتة والحلويات، المأكولات الصحية المعبأة، المكملات الغذائية، والبهارات والصلصات",
+        "scope_en": "Coffee & tea, chocolates & confections, packaged organic snacks, dietary supplements, and specialty sauces",
         "icon": SVG_COFFEE,
-        "tag": "[أغذية ومشروبات]",
+        "tag": "[Food & Beverage]",
         "reviews": 18240,
         "pos_reviews": 14482,
         "neg_reviews": 2462,
@@ -636,28 +595,27 @@ STORE_CATEGORIES_DATA = [
         "avg_rating": 4.22,
         "csat": 79.4,
         "risk": 13.5,
-        "status": "القطاع القيادي الأعلى مبيعاً (Top Performer)",
+        "status_en": "Top Platform Revenue Driver (Category Leader)",
         "badge_color": "#059669",
         "badge_bg": "#ECFDF5",
-        "recommendation": "التركيز على تاريخ الصلاحية وسرعة الشحن للحفاظ على أعلى تقييمات، مع بناء حزم توفيرية (Bundles).",
+        "recommendation_en": "Prioritize shelf-life monitoring and fast fulfillment to preserve high CSAT, leveraging bundled multi-packs.",
         "score_counts": {5: 11850, 4: 2632, 3: 1296, 2: 890, 1: 1572},
         "defects": [
-            {"سبب الشكوى": "تأخر الشحن وتأثر جودة التخزين (Shipping Delay)", "عدد التكرار": 200},
-            {"سبب الشكوى": "تكتل أو تغير القوام (Texture/Clumping)", "عدد التكرار": 262},
-            {"سبب الشكوى": "سعر مبالغ فيه مقارنة بالكمية (Overpriced for Size)", "عدد التكرار": 390},
-            {"سبب الشكوى": "قرب تاريخ انتهاء الصلاحية (Short Shelf Life)", "عدد التكرار": 410},
-            {"سبب الشكوى": "تلف العبوة أثناء الشحن وتفريغ الهواء (Packaging Leak)", "عدد التكرار": 520},
-            {"سبب الشكوى": "طعم أو نكهة غير متوقعة (Taste/Flavor Mismatch)", "عدد التكرار": 680}
+            {"Complaint Root Cause": "Shipping Delay Impacting Freshness", "Occurrences": 200},
+            {"Complaint Root Cause": "Clumping / Unfavorable Texture", "Occurrences": 262},
+            {"Complaint Root Cause": "Overpriced Relative to Portion Size", "Occurrences": 390},
+            {"Complaint Root Cause": "Short Remaining Shelf Life / Near Expiry", "Occurrences": 410},
+            {"Complaint Root Cause": "Packaging Leak or Seal Breach in Transit", "Occurrences": 520},
+            {"Complaint Root Cause": "Taste / Flavor Expectation Mismatch", "Occurrences": 680}
         ],
-        "keywords": ["coffee", "tea", "chocolate", "snack", "chip", "food", "drink", "sugar", "sauce", "cereal", "pasta", "oil", "spice", "candy", "cookie", "قهوة", "شاي", "شوكولاتة", "سناك", "بسكويت", "مشروب", "طعام", "غذائ", "عسل", "زيت", "توابل", "حلويات"]
+        "keywords": ["coffee", "tea", "chocolate", "snack", "chip", "food", "drink", "sugar", "sauce", "cereal", "pasta", "oil", "spice", "candy", "cookie", "قهوة", "شاي", "شوكولاتة", "سناك", "طعام"]
     },
     {
         "id": "electronics",
-        "name_ar": "الهواتف الذكية والإلكترونيات الاستهلاكية",
         "name_en": "Electronics & Mobile Tech",
-        "scope": "الهواتف الذكية، السماعات اللاسلكية، بنوك الطاقة والشواحن، كابلات الشحن، الساعات الذكية، والإكسسوارات الرقمية",
+        "scope_en": "Smartphones, wireless earbuds, power banks & chargers, high-speed cables, smartwatches, and digital accessories",
         "icon": SVG_PHONE,
-        "tag": "[إلكترونيات وتقنية]",
+        "tag": "[Consumer Electronics]",
         "reviews": 11450,
         "pos_reviews": 8839,
         "neg_reviews": 1752,
@@ -666,28 +624,27 @@ STORE_CATEGORIES_DATA = [
         "avg_rating": 4.15,
         "csat": 77.2,
         "risk": 15.3,
-        "status": "طلب استهلاكي فائق ومستمر (High Demand)",
+        "status_en": "High Consumer Velocity & Constant Demand",
         "badge_color": "#2563EB",
         "badge_bg": "#EFF6FF",
-        "recommendation": "التأكيد على شهادات الجودة والتوافق مع الأجهزة لتقليل المرتجعات الناتجة عن سوء الفهم التقني.",
+        "recommendation_en": "Reinforce technical compatibility guidelines and certification badges to mitigate return friction.",
         "score_counts": {5: 7200, 4: 1639, 3: 859, 2: 642, 1: 1110},
         "defects": [
-            {"سبب الشكوى": "خدوش أو تلف بالهيكل الخارجي (Scratch / Damaged)", "عدد التكرار": 110},
-            {"سبب الشكوى": "منتج مقلد أو غير معتمد (Non-certified / Fake)", "عدد التكرار": 182},
-            {"سبب الشكوى": "عدم مطابقة سرعة الشحن أو الصوت للوصف (Spec Mismatch)", "عدد التكرار": 260},
-            {"سبب الشكوى": "سخونة مفرطة أثناء الشحن أو الاستخدام (Overheating)", "عدد التكرار": 310},
-            {"سبب الشكوى": "مشاكل التوافق مع النظام أو المنفذ (Incompatible Port/OS)", "عدد التكرار": 380},
-            {"سبب الشكوى": "توقف الشاحن أو الكابل عن العمل مبكراً (Cable/Charger Failure)", "عدد التكرار": 510}
+            {"Complaint Root Cause": "Surface Scratches or Casing Blemishes", "Occurrences": 110},
+            {"Complaint Root Cause": "Counterfeit / Non-Certified Unit Suspected", "Occurrences": 182},
+            {"Complaint Root Cause": "Charging Speed or Sound Specs Mismatch", "Occurrences": 260},
+            {"Complaint Root Cause": "Overheating During Rapid Charging or Heavy Use", "Occurrences": 310},
+            {"Complaint Root Cause": "Incompatible Port / Operating System Mismatch", "Occurrences": 380},
+            {"Complaint Root Cause": "Cable or Charging Failure After Early Use", "Occurrences": 510}
         ],
-        "keywords": ["phone", "iphone", "samsung", "charger", "cable", "case", "screen", "headphone", "earphone", "bluetooth", "laptop", "watch", "smart", "usb", "adapter", "powerbank", "هاتف", "شاحن", "كابل", "سماعة", "سامسونج", "ايفون", "ساعة", "جراب", "شاشة", "جوال", "تابلت", "بلوتوث"]
+        "keywords": ["phone", "iphone", "samsung", "charger", "cable", "case", "screen", "headphone", "earphone", "bluetooth", "laptop", "watch", "smart", "usb", "adapter", "powerbank", "هاتف", "سماعة"]
     },
     {
         "id": "home_kitchen",
-        "name_ar": "مستلزمات وأجهزة المنزل والمطبخ",
         "name_en": "Home & Kitchen Essentials",
-        "scope": "أواني الطهي، الخلاطات والأجهزة الصغيرة، أدوات المائدة، مستلزمات التنظيم، ومنتجات العناية بالمنزل",
+        "scope_en": "Cookware & bakeware, compact blenders & appliances, dinnerware, home organizers, and cleaning tools",
         "icon": SVG_HOME,
-        "tag": "[منزل ومطبخ]",
+        "tag": "[Home & Kitchen]",
         "reviews": 6820,
         "pos_reviews": 5217,
         "neg_reviews": 1105,
@@ -696,27 +653,26 @@ STORE_CATEGORIES_DATA = [
         "avg_rating": 4.10,
         "csat": 76.5,
         "risk": 16.2,
-        "status": "يتطلب مراقبة التغليف والشحن (Packaging QC)",
+        "status_en": "Packaging & Fragility QC Required",
         "badge_color": "#D97706",
         "badge_bg": "#FEF3C7",
-        "recommendation": "الاهتمام الفائق بحماية التغليف الخارجي لتفادي كسر السلع أو تشوهها أثناء النقل مع توفير إرشادات تشغيل واضحة.",
+        "recommendation_en": "Enhance protective inner packaging to prevent transit breakage and include illustrated quick-start manuals.",
         "score_counts": {5: 4120, 4: 1097, 3: 498, 2: 410, 1: 695},
         "defects": [
-            {"سبب الشكوى": "صوت مزعج أو اهتزاز عالي (Noisy / Vibration)", "عدد التكرار": 130},
-            {"سبب الشكوى": "الحجم أصغر من المتوقع في الصور (Smaller than Pictured)", "عدد التكرار": 160},
-            {"سبب الشكوى": "ضعف متانة المحرك أو الشفرات (Motor/Blade Weakness)", "عدد التكرار": 190},
-            {"سبب الشكوى": "صعوبة التنظيف والتجميع (Hard to Clean/Assemble)", "عدد التكرار": 240},
-            {"سبب الشكوى": "كسر الزجاج أو الأجزاء أثناء الشحن (Broken in Transit)", "عدد التكرار": 385}
+            {"Complaint Root Cause": "Excessive Motor Noise or High Vibration", "Occurrences": 130},
+            {"Complaint Root Cause": "Dimensions Smaller Than Product Images", "Occurrences": 160},
+            {"Complaint Root Cause": "Motor or Blade Durability Degradation", "Occurrences": 190},
+            {"Complaint Root Cause": "Difficult to Clean or Reassemble", "Occurrences": 240},
+            {"Complaint Root Cause": "Broken Glass or Components in Transit", "Occurrences": 385}
         ],
-        "keywords": ["kitchen", "pan", "pot", "knife", "blender", "cooker", "home", "cleaning", "mug", "table", "chair", "bed", "towel", "مطبخ", "منزل", "خلاط", "مقلاة", "سكين", "وعاء", "طاسة", "تنظيف", "مفرمة", "فرن", "كوب", "حلل", "أواني"]
+        "keywords": ["kitchen", "pan", "pot", "knife", "blender", "cooker", "home", "cleaning", "mug", "table", "chair", "bed", "towel", "مطبخ", "خلاط"]
     },
     {
         "id": "health_beauty",
-        "name_ar": "الصحة والعناية الشخصية والجمال",
         "name_en": "Health & Personal Care",
-        "scope": "منتجات العناية بالبشرة والشعر، الصابون الطبيعي، العطور ومستحضرات التجميل، ومستلزمات النظافة الشخصية",
+        "scope_en": "Skincare, haircare, organic soaps, perfumes & fragrances, serums, and personal hygiene essentials",
         "icon": SVG_HEART_SPARK,
-        "tag": "[صحة وجمال]",
+        "tag": "[Health & Beauty]",
         "reviews": 5110,
         "pos_reviews": 4154,
         "neg_reviews": 618,
@@ -725,27 +681,26 @@ STORE_CATEGORIES_DATA = [
         "avg_rating": 4.28,
         "csat": 81.3,
         "risk": 12.1,
-        "status": "ولاء عملاء مرتفع وهوامش ربح ممتازة (High Loyalty)",
+        "status_en": "High Repeat Purchase Loyalty & Strong Margins",
         "badge_color": "#7C3AED",
         "badge_bg": "#F5F3FF",
-        "recommendation": "تقديم وصف تفصيلي للمكونات والملاءمة لأنواع البشرة لبناء ثقة مشتري مستمرة تدعم الشراء المتكرر.",
+        "recommendation_en": "Detail full ingredient transparency and skin suitability to cultivate recurring subscription orders.",
         "score_counts": {5: 3450, 4: 704, 3: 338, 2: 210, 1: 408},
         "defects": [
-            {"سبب الشكوى": "تأثير غير ملحوظ بعد الاستخدام (No Visible Effect)", "عدد التكرار": 60},
-            {"سبب الشكوى": "قوام دهني أو امتصاص بطيء (Greasy / Slow Absorption)", "عدد التكرار": 98},
-            {"سبب الشكوى": "تسريب العبوة أثناء النقل (Leaking Bottle)", "عدد التكرار": 120},
-            {"سبب الشكوى": "رائحة أو عطر غير مستحب (Unpleasant Scent)", "عدد التكرار": 145},
-            {"سبب الشكوى": "تحسس جلدي أو عدم ملاءمة البشرة (Skin Irritation)", "عدد التكرار": 195}
+            {"Complaint Root Cause": "No Noticeable Aesthetic Effect After Weeks", "Occurrences": 60},
+            {"Complaint Root Cause": "Greasy Texture / Slow Skin Absorption", "Occurrences": 98},
+            {"Complaint Root Cause": "Dispenser or Bottle Leakage in Shipment", "Occurrences": 120},
+            {"Complaint Root Cause": "Unpleasant or Overpowering Scent", "Occurrences": 145},
+            {"Complaint Root Cause": "Skin Irritation or Sensitivity Reaction", "Occurrences": 195}
         ],
-        "keywords": ["cream", "lotion", "shampoo", "soap", "skin", "care", "hair", "perfume", "fragrance", "serum", "beauty", "cosmetic", "كريم", "شامبو", "صابون", "بشرة", "شعر", "عطر", "عناية", "سيروم", "جمال", "مرطب", "تجميل", "غسول"]
+        "keywords": ["cream", "lotion", "shampoo", "soap", "skin", "care", "hair", "perfume", "fragrance", "serum", "beauty", "cosmetic", "كريم", "شعر"]
     },
     {
         "id": "pets",
-        "name_ar": "مستلزمات وتغذية الحيوانات الأليفة",
         "name_en": "Pet Supplies & Treats",
-        "scope": "أغذية ومكافآت الكلاب والقطط، ألعاب الحيوانات، أطواق وأدوات العناية، والمستلزمات البيطرية الخفيفة",
+        "scope_en": "Dog & cat nutrition, training treats, chew toys, grooming collars & leashes, and gentle wellness items",
         "icon": SVG_PET,
-        "tag": "[حيوانات أليفة]",
+        "tag": "[Pet Supplies]",
         "reviews": 3856,
         "pos_reviews": 3185,
         "neg_reviews": 439,
@@ -754,24 +709,23 @@ STORE_CATEGORIES_DATA = [
         "avg_rating": 4.31,
         "csat": 82.6,
         "risk": 11.4,
-        "status": "أعلى معدل رضا وتكرار شراء (Highest Satisfaction)",
+        "status_en": "Highest CSAT & Recurring Purchase Rate",
         "badge_color": "#059669",
         "badge_bg": "#ECFDF5",
-        "recommendation": "قطاع يتميز بالولاء الشديد؛ تقديم اشتراكات دورية وبرامج ولاء يضمن تدفقاً نقدياً مستقراً للتاجر.",
+        "recommendation_en": "Leverage strong brand loyalty by establishing Subscribe & Save promotions for predictable cashflow.",
         "score_counts": {5: 2680, 4: 505, 3: 232, 2: 153, 1: 286},
         "defects": [
-            {"سبب الشكوى": "جفاف المكافآت أو تصلبها (Hardened / Dry Treats)", "عدد التكرار": 30},
-            {"سبب الشكوى": "اضطراب هضمي خفيف للحيوان (Mild Sensitivity)", "عدد التكرار": 54},
-            {"سبب الشكوى": "تمزق اللعبة أو تلفها سريعاً (Not Durable / Chewed)", "عدد التكرار": 95},
-            {"سبب الشكوى": "مقاس الطوق أو اللعبة غير مناسب (Size Mismatch)", "عدد التكرار": 110},
-            {"سبب الشكوى": "رفض الحيوان الأليف للمنتج أو الطعم (Pet Refused Food)", "عدد التكرار": 150}
+            {"Complaint Root Cause": "Dry or Hardened Biscuit Consistency", "Occurrences": 30},
+            {"Complaint Root Cause": "Mild Digestive Sensitivity Noted", "Occurrences": 54},
+            {"Complaint Root Cause": "Toy Chewed Through or Torn Rapidly", "Occurrences": 95},
+            {"Complaint Root Cause": "Collar or Harness Sizing Inaccuracy", "Occurrences": 110},
+            {"Complaint Root Cause": "Pet Refused Food or Palatability Mismatch", "Occurrences": 150}
         ],
-        "keywords": ["dog", "cat", "pet", "puppy", "kitten", "treat", "collar", "leash", "feed", "كلب", "قطة", "حيوان", "أليف", "طعام قطط", "طعام كلاب", "مكافآت"]
+        "keywords": ["dog", "cat", "pet", "puppy", "kitten", "treat", "collar", "leash", "feed", "كلب", "قطة"]
     }
 ]
 
 def detect_store_category(title):
-    """Detects which store department/category a product belongs to based on title keywords."""
     if not title:
         return STORE_CATEGORIES_DATA[0]
     t = str(title).lower()
@@ -779,85 +733,82 @@ def detect_store_category(title):
         for kw in cat["keywords"]:
             if kw in t:
                 return cat
-    # Default to Gourmet Food & Beverages as the historical anchor
     return STORE_CATEGORIES_DATA[0]
 
 def generate_buyer_seller_decision(reviews_df, avg_rating, csat_score, neg_ratio, cat_info=None):
-    # Historical platform benchmark from 45,476 Amazon reviews dataset
     bm_csat = 78.1
     bm_risk = 14.4
     bm_rating = 4.18
 
-    # Category specific benchmark
-    cat_name = cat_info.get("name_ar", "المنصة العامة") if cat_info else "المنصة العامة"
+    cat_name = cat_info.get("name_en", "Platform Benchmark") if cat_info else "Platform Benchmark"
     cat_bm_csat = cat_info.get("csat", bm_csat) if cat_info else bm_csat
     cat_bm_rating = cat_info.get("avg_rating", bm_rating) if cat_info else bm_rating
 
     # --- 1. Buyer Decision ---
     if csat_score >= 82 and neg_ratio <= 12:
-        buyer_badge = "يُنصح بالشراء بشدة (Strong Buy)"
+        buyer_badge = "Strong Buy Recommendation"
         buyer_badge_bg = "#ECFDF5"
         buyer_badge_color = "#065F46"
         buyer_score = min(10.0, round(csat_score / 10.0, 1))
         buyer_bullets = [
-            f"<b>تفوق على معيار قسم ({cat_name}):</b> تقييم المنتج ({avg_rating:.1f}/5.0) يتجاوز متوسط القسم ({cat_bm_rating:.2f}/5.0) ومعدل الرضا ({csat_score:.1f}% مقابل {cat_bm_csat:.1f}%).",
-            f"<b>أمان عالي ومخاطر شبه منعدمة:</b> نسبة الشكاوى المادية {neg_ratio:.1f}% فقط، وهي أقل بكثير من متوسط السوق ({bm_risk:.1f}%).",
-            f"<b>إجماع على مطابقة الوصف:</b> أكد {csat_score:.1f}% من المشترين جودة التصنيع ورضاهم التام عن السلعة."
+            f"<b>Outperforms ({cat_name}) Benchmark:</b> Product rating ({avg_rating:.1f}/5.0) and CSAT ({csat_score:.1f}%) exceed category standards ({cat_bm_rating:.2f}/5.0 and {cat_bm_csat:.1f}%).",
+            f"<b>Negligible Defect Risk:</b> Critical complaint rate is only {neg_ratio:.1f}%, far below the platform risk threshold ({bm_risk:.1f}%).",
+            f"<b>Strict Specification Alignment:</b> {csat_score:.1f}% of verified purchasers confirmed premium build quality and accurate descriptions."
         ]
     elif csat_score >= 68 and neg_ratio <= 25:
-        buyer_badge = "شراء مشروط ومقبول (Moderate Buy)"
+        buyer_badge = "Moderate Buy (Viable with Caveats)"
         buyer_badge_bg = "#FFFBEB"
         buyer_badge_color = "#92400E"
         buyer_score = round(csat_score / 10.0, 1)
         buyer_bullets = [
-            f"<b>أداء متقارب مع معيار قسم ({cat_name}):</b> معدل رضا بنسبة {csat_score:.1f}% (مقارنة بمتوسط القسم {cat_bm_csat:.1f}%).",
-            f"<b>ملاحظات تشغيلية طفيفة:</b> رُصدت بعض الاعتراضات بنسبة {neg_ratio:.1f}%، يُنصح بمراجعتها قبل الشراء.",
-            "<b>توصية للمستهلك:</b> قارن السعر الحالي مع العروض البديلة في نفس القسم لضمان الحصول على أفضل قيمة مقابل السعر."
+            f"<b>Parity with ({cat_name}) Standard:</b> Product CSAT is {csat_score:.1f}% (compared to department average of {cat_bm_csat:.1f}%).",
+            f"<b>Minor Operational Notes:</b> Detected {neg_ratio:.1f}% complaint rate; review friction points before completing checkout.",
+            "<b>Consumer Advice:</b> Compare current pricing with alternative offerings within the category to ensure optimal price-to-performance value."
         ]
     else:
-        buyer_badge = "لا يُنصح بالشراء (High Risk / Skip)"
+        buyer_badge = "High Risk / Skip Product"
         buyer_badge_bg = "#FEF2F2"
         buyer_badge_color = "#991B1B"
         buyer_score = max(1.0, round(csat_score / 10.0, 1))
         buyer_bullets = [
-            f"<b>أدنى من معايير قسم ({cat_name}):</b> تقييم السلعة ورضاها أقل من معدل القسم ({cat_bm_csat:.1f}%) مع تجاوز نسبة المخاطر المسموح بها.",
-            "<b>احتمالية عالية لخيبة الأمل:</b> تكرار ملاحظات حول عيوب الصناعة أو عدم مطابقة الجودة للمواصفات.",
-            "<b>توصية للمستهلك:</b> تجنب الشراء والبحث عن بديل موثوق بتقييمات مستقرة لتفادي إجراءات الإرجاع."
+            f"<b>Below ({cat_name}) Benchmark:</b> Customer satisfaction ({csat_score:.1f}%) falls significantly short of category standards ({cat_bm_csat:.1f}%).",
+            "<b>High Likelihood of Disappointment:</b> Frequent feedback concerning manufacturing defects, fragile materials, or spec divergence.",
+            "<b>Consumer Advice:</b> Avoid purchasing; seek a verified competitor with stable review metrics to prevent return hassles."
         ]
 
     # --- 2. Seller Decision ---
     if csat_score >= 82 and neg_ratio <= 12:
-        seller_badge = "منتج رابح - عالي الجدوى (Winning Product)"
+        seller_badge = "Winning Catalog Item (High Feasibility)"
         seller_badge_bg = "#ECFDF5"
         seller_badge_color = "#065F46"
-        return_risk = "منخفض جداً (< 3% مرتجعات متوقعة)"
+        return_risk = "Very Low (< 3% Expected Return Rate)"
         ops_stability = min(98, int(csat_score))
         seller_bullets = [
-            f"<b>مؤشر أمان تشغيلي فائق في قطاع ({cat_name}):</b> تدني شكاوى العملاء يحمي حساب البائع على أمازون (ODR < 1%).",
-            f"<b>تكلفة شحن عكسي شبه معدومة:</b> معدل المرتجعات المتوقع {return_risk}، مما يحافظ على كامل هامش الربح الصافي.",
-            "<b>استراتيجية البيع:</b> منتج ممتاز لحملات الإعلانات الممولة (Amazon PPC) والتوسع في المخزون وبناء ماركة خاصة (Private Label)."
+            f"<b>Superior FBA Account Safety in ({cat_name}):</b> Minimal customer friction protects your Amazon Seller Health (Order Defect Rate < 1%).",
+            f"<b>Minimal Reverse Logistics Expense:</b> Expected return rate is {return_risk}, preserving full gross profit margin.",
+            "<b>Strategic Growth:</b> Prime candidate for aggressive Amazon PPC campaigns, inventory scaling, and private-label expansion."
         ]
     elif csat_score >= 68 and neg_ratio <= 25:
-        seller_badge = "سوق تنافسي - جدوى مشروطة (Viable with QC)"
+        seller_badge = "Competitive Viability (Requires QC)"
         seller_badge_bg = "#FFFBEB"
         seller_badge_color = "#92400E"
-        return_risk = "متوسط (8% إلى 12% مرتجعات متوقعة)"
+        return_risk = "Moderate (8% to 12% Expected Return Rate)"
         ops_stability = int(csat_score * 0.85)
         seller_bullets = [
-            f"<b>منافسة معتادة في قطاع ({cat_name}):</b> مؤشر الأمان التشغيلي ({ops_stability}%) يتطلب فحص الجودة (Quality Control) قبل الشحن لمستودعات أمازون FBA.",
-            f"<b>تأثير تكلفة الإرجاع:</b> معدل المرتجعات المتوقع {return_risk}، يجب حسابه ضمن تسعير المنتج لضمان هامش ربح إيجابي.",
-            "<b>استراتيجية البيع:</b> التركيز على تحسين التغليف وإرفاق دليل استخدام واضح لتقليل سوء الفهم من المشترين."
+            f"<b>Typical Competition in ({cat_name}):</b> Operational health ({ops_stability}%) demands strict pre-shipment Quality Control before sending to FBA warehouses.",
+            f"<b>Factoring Return Costs:</b> Expected return rate ({return_risk}) must be incorporated into product unit economics.",
+            "<b>Strategic Growth:</b> Improve protective inner packaging and include illustrated quick-start guides to reduce customer usage friction."
         ]
     else:
-        seller_badge = "شديد الخطورة - تجنب الاستثمار (Negative Drag)"
+        seller_badge = "Critical Drag / Avoid Stocking"
         seller_badge_bg = "#FEF2F2"
         seller_badge_color = "#991B1B"
-        return_risk = "مرتفع وحرج (> 20% مرتجعات متوقعة)"
+        return_risk = "High & Critical (> 20% Expected Return Rate)"
         ops_stability = max(15, int(csat_score * 0.45))
         seller_bullets = [
-            f"<b>تهديد مباشر لحساب البائع في قطاع ({cat_name}):</b> ارتفاع المراجعات السلبية يرفع Order Defect Rate ويعرض المتجر للإيقاف.",
-            f"<b>استنزاف الأرباح في المرتجعات:</b> تكلفة الإرجاع والعمولات الإضافية ستتجاوز أي هامش ربح متوقع.",
-            "<b>استراتيجية البيع:</b> تصفية المخزون فوراً وتجنب إعادة الطلب من هذا المورد حتى معالجة عيوب التصنيع الجذرية."
+            f"<b>Direct Account Threat in ({cat_name}):</b> Elevated negative reviews spike Order Defect Rate (ODR) and risk account suspension.",
+            "<b>Margin Erosion:</b> Return shipping fees, FBA disposal, and customer refunds will outweigh projected gross profit margins.",
+            "<b>Strategic Action:</b> Liquidate existing stock immediately and avoid reordering from this supplier until root defects are resolved."
         ]
 
     return {
@@ -874,12 +825,11 @@ def generate_buyer_seller_decision(reviews_df, avg_rating, csat_score, neg_ratio
         "seller_bullets": seller_bullets
     }
 
-
 # ----------------- HERO BANNER -----------------
 st.markdown("""
 <div class="hero-container">
     <h1 class="hero-title">MarketMind Amazon</h1>
-    <p style="margin:4px 0 0 0; color:#94A3B8; font-size:1.05rem; font-weight:500;">Product Sentiment & Market Health Intelligence System</p>
+    <p class="hero-subtitle">Enterprise AI Sentiment & Market Health Intelligence System</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -892,8 +842,8 @@ tab_product, tab_dashboard, tab_compare = st.tabs([
 
 # ================= TAB 1: PRODUCT BY URL =================
 with tab_product:
-    st.markdown("#### تحليل أداء أي منتج على أمازون عبر الرابط المباشر")
-    st.caption("أدخل رابط المنتج من أمازون مصر أو العالمي (أو كود ASIN) لفحص المراجعات، حساب مؤشرات الرضا، واستخراج نقاط القوة والضعف:")
+    st.markdown("#### Analyze Any Amazon Product via Direct Link or ASIN")
+    st.caption("Paste an Amazon product URL (Amazon.com, Amazon.eg, Amazon.co.uk) or enter a 10-character ASIN to inspect customer reviews, compute CSAT benchmarks, and analyze buyer & seller feasibility:")
 
     if "input_url" not in st.session_state:
         st.session_state["input_url"] = ""
@@ -901,14 +851,14 @@ with tab_product:
     c_in1, c_in2 = st.columns([4.2, 1.2])
     with c_in1:
         product_link = st.text_input(
-            "رابط منتج أمازون أو كود ASIN:",
+            "Amazon Product URL or ASIN:",
             value=st.session_state["input_url"],
-            placeholder="مثال: https://www.amazon.eg/dp/... أو https://www.amazon.com/dp/... أو كود ASIN"
+            placeholder="e.g. https://www.amazon.com/dp/... or https://www.amazon.eg/dp/... or ASIN (10 chars)"
         )
     with c_in2:
         st.write("")
         st.write("")
-        analyze_btn = st.button("تحليل المنتج", type="primary", use_container_width=True)
+        analyze_btn = st.button("Analyze Product", type="primary", use_container_width=True)
 
     if not product_link.strip() and not analyze_btn:
         st.markdown(f"""
@@ -916,28 +866,28 @@ with tab_product:
             <div style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:12px; background:#EFF6FF; color:#2563EB; margin-bottom:12px;">
                 {SVG_SEARCH}
             </div>
-            <h4 style="margin:0 0 8px 0; color:#1E293B; font-weight:700;">جاهز لتحليل أي منتج في الوقت الفعلي</h4>
+            <h4 style="margin:0 0 8px 0; color:#1E293B; font-weight:700;">Ready to Analyze Any Amazon Product in Real-Time</h4>
             <p style="margin:0 auto; max-width:540px; color:#64748B; font-size:0.92rem; line-height:1.6;">
-                الصق رابط صفحة المنتج من موقع أمازون أو أدخل كود ASIN في الحقل أعلاه واضغط على <b>تحليل المنتج</b> لفحص آراء المشترين فوراً، واستخراج مؤشرات رضا العملاء وتحليلات السوق.
+                Paste any live Amazon product URL or ASIN code in the input box above and click <b>Analyze Product</b> to inspect real customer sentiment, extract verified CSAT indices, and evaluate catalog viability.
             </p>
         </div>
         """, unsafe_allow_html=True)
     else:
         asin = extract_asin(product_link)
         if not asin:
-            st.error("لم يتم العثور على كود منتج صالح (ASIN). يرجى التأكد من الرابط أو إدخال كود ASIN مكون من 10 خانات.")
+            st.error("No valid 10-character Amazon Standard Identification Number (ASIN) found. Please verify the URL or enter a valid ASIN.")
         else:
-            prog_bar = st.progress(0, text="جاري الاتصال بخوادم أمازون...")
-            prog_bar.progress(15, text="جاري جلب بيانات المنتج والمراجعات...")
+            prog_bar = st.progress(0, text="Connecting to Amazon servers...")
+            prog_bar.progress(15, text="Fetching product metadata and customer reviews...")
             reviews_df, source_label, prod_title, is_simulated = fetch_product_reviews(product_link)
-            prog_bar.progress(60, text="جاري تشغيل نموذج الذكاء الاصطناعي على المراجعات...")
+            prog_bar.progress(60, text="Running Calibrated Machine Learning models on review corpus...")
 
-            # Try to fetch product image URL from Amazon
+            # Product image URL fetch
             prod_img_url = ""
             try:
                 _curl = shutil.which("curl") or shutil.which("curl.exe")
-                _img_domain = "amazon.eg"
-                for _d in ["amazon.eg", "amazon.sa", "amazon.ae", "amazon.com"]:
+                _img_domain = "amazon.com"
+                for _d in ["amazon.com", "amazon.eg", "amazon.sa", "amazon.ae"]:
                     if _d in product_link.lower():
                         _img_domain = _d
                         break
@@ -960,8 +910,7 @@ with tab_product:
             except Exception:
                 prod_img_url = ""
 
-
-            # Run Bilingual Model on All Reviews
+            # Run Model on All Reviews
             sentiments = []
             confidences = []
             engines = []
@@ -973,12 +922,12 @@ with tab_product:
                 confidences.append(s_conf)
                 engines.append(s_eng)
                 prog_bar.progress(60 + int(35 * (i + 1) / max(1, total_to_run)),
-                                  text=f"تحليل مراجعة {i+1} من {total_to_run}...")
+                                  text=f"Classifying review {i+1} of {total_to_run}...")
 
             reviews_df['AI_Sentiment'] = sentiments
             reviews_df['Confidence'] = confidences
             reviews_df['Engine'] = engines
-            prog_bar.progress(100, text="اكتمل التحليل بنجاح!")
+            prog_bar.progress(100, text="Inference completed successfully!")
             prog_bar.empty()
 
             total_revs = len(reviews_df)
@@ -986,7 +935,6 @@ with tab_product:
             neg_count = (reviews_df['AI_Sentiment'] == "Negative").sum()
             pos_ratio = (pos_count / total_revs) * 100 if total_revs > 0 else 0
             avg_rating = reviews_df['Score'].mean() if 'Score' in reviews_df.columns else 4.0
-            # Weighted CSAT index directly aligned with 5-star rating (e.g. 4.5/5 = 90.0%)
             csat_score = (avg_rating / 5.0) * 100.0 if avg_rating > 0 else pos_ratio
             neg_ratio = (neg_count / total_revs) * 100 if total_revs > 0 else 0.0
 
@@ -997,18 +945,18 @@ with tab_product:
                     <div style="display:flex; align-items:center; gap:8px;">
                         {SVG_ALERT}
                         <h4 style="margin:0; color:#B45309; font-weight:800; font-size:1.02rem;">
-                            إفصاح ومنهجية: يتم عرض بيانات محاكاة مرجعية (Simulated Benchmark Sandbox)
+                            Methodology & Disclosure: Simulated Benchmark Sandbox
                         </h4>
                     </div>
                     <p style="margin:6px 0 0 0; color:#78350F; font-size:0.88rem; line-height:1.6;">
-                        تعذر سحب المراجعات الحية من خوادم أمازون مباشرة (نظراً لقيود حماية البوتات وتحديثات التحقق الأمني Amazon Bot Protection / CAPTCHA أو لعدم توفر مراجعات)، كما أن المنتج غير متواجد في قاعدة البيانات المحلية. يتم عرض <b>عينة محاكاة إرشادية</b> لتوضيح مخرجات خوارزميات تصنيف المشاعر ولوحات المؤشرات التنافسية بأمانة علمية وشفافية كاملة.
+                        Live customer reviews could not be directly scraped from Amazon servers due to security/CAPTCHA bot-protection, and this ASIN is not in the local offline database. A <b>realistic benchmark sample</b> is displayed to transparently demonstrate the NLP inference engine and competitive intelligence dashboards.
                     </p>
                 </div>
                 <div style="background:#FEF3C7; border:1px solid #FDE68A; border-radius:10px; padding:12px 18px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between;">
                     <div style="display:flex; align-items:center; gap:8px;">
                         {SVG_ALERT}
-                        <span style="font-weight:700; color:#92400E;">بيانات محاكاة:</span>
-                        <span style="color:#B45309; margin-right:4px;"><b>{prod_title}</b> (ASIN: <code>{asin}</code>)</span>
+                        <span style="font-weight:700; color:#92400E;">Sandbox Mode:</span>
+                        <span style="color:#B45309; margin-left:4px;"><b>{prod_title}</b> (ASIN: <code>{asin}</code>)</span>
                     </div>
                     <div style="font-size:0.8rem; font-weight:700; color:#92400E; background:#FDE68A; padding:4px 12px; border-radius:9999px; display:inline-flex; align-items:center; gap:6px;">
                         {SVG_ALERT} Simulated Sandbox Data
@@ -1022,8 +970,8 @@ with tab_product:
                 <div style="background:#ECFDF5; border:1px solid #A7F3D0; border-radius:10px; padding:12px 18px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between;">
                     <div style="display:flex; align-items:center; gap:8px;">
                         {SVG_CHECK}
-                        <span style="font-weight:700; color:#065F46;">تم التحليل بنجاح:</span>
-                        <span style="color:#047857; margin-right:4px;"><b>{prod_title}</b> (ASIN: <code>{asin}</code>)</span>
+                        <span style="font-weight:700; color:#065F46;">Analysis Successful:</span>
+                        <span style="color:#047857; margin-left:4px;"><b>{prod_title}</b> (ASIN: <code>{asin}</code>)</span>
                     </div>
                     <div style="font-size:0.8rem; font-weight:700; color:{badge_color}; background:{badge_bg}; padding:4px 12px; border-radius:9999px;">
                         {source_label}
@@ -1034,7 +982,7 @@ with tab_product:
             # Detect Store Department / Category
             cat_info = detect_store_category(prod_title)
 
-            # ----------------- PRODUCT IMAGE & STORE CATEGORY CARD -----------------
+            # Product Information Card
             if prod_img_url:
                 img_col, info_col = st.columns([1, 3])
                 with img_col:
@@ -1046,33 +994,34 @@ with tab_product:
                 with info_col:
                     st.markdown(f"""
                     <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:18px 22px; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
-                        <div style="font-size:0.75rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">المنتج المحلل وقسم المتجر التابع له</div>
+                        <div style="font-size:0.75rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Analyzed Product & Department Classification</div>
                         <h3 style="margin:0 0 10px 0; color:#0F172A; font-size:1.05rem; font-weight:800; line-height:1.4;">{prod_title}</h3>
                         <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                             <span style="background:{cat_info['badge_bg']}; color:{cat_info['badge_color']}; border:1px solid {cat_info['badge_color']}33; padding:4px 12px; border-radius:9999px; font-size:0.8rem; font-weight:800;">
-                                {cat_info['icon']} قسم المتجر: {cat_info['name_ar']} (معيار الرضا: {cat_info['csat']}%)
+                                {cat_info['icon']} Department: {cat_info['name_en']} (CSAT Benchmark: {cat_info['csat']}%)
                             </span>
                             <span style="background:#EFF6FF; color:#1E40AF; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">ASIN: {asin}</span>
                             <span style="background:#F0FDF4; color:#166534; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{source_label}</span>
-                            <span style="background:#FEF3C7; color:#92400E; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{total_revs} مراجعة محللة</span>
+                            <span style="background:#FEF3C7; color:#92400E; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{total_revs} Analyzed Reviews</span>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
                 <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:18px 22px; margin-bottom:16px; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
-                    <div style="font-size:0.75rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">المنتج المحلل وقسم المتجر التابع له</div>
+                    <div style="font-size:0.75rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Analyzed Product & Department Classification</div>
                     <h3 style="margin:0 0 10px 0; color:#0F172A; font-size:1.05rem; font-weight:800; line-height:1.4;">{prod_title}</h3>
                     <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
                         <span style="background:{cat_info['badge_bg']}; color:{cat_info['badge_color']}; border:1px solid {cat_info['badge_color']}33; padding:4px 12px; border-radius:9999px; font-size:0.8rem; font-weight:800;">
-                            {cat_info['icon']} قسم المتجر: {cat_info['name_ar']} (معيار الرضا: {cat_info['csat']}%)
+                            {cat_info['icon']} Department: {cat_info['name_en']} (CSAT Benchmark: {cat_info['csat']}%)
                         </span>
                         <span style="background:#EFF6FF; color:#1E40AF; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">ASIN: {asin}</span>
                         <span style="background:#F0FDF4; color:#166534; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{source_label}</span>
-                        <span style="background:#FEF3C7; color:#92400E; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{total_revs} مراجعة محللة</span>
+                        <span style="background:#FEF3C7; color:#92400E; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{total_revs} Analyzed Reviews</span>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+
             st.markdown("<br>", unsafe_allow_html=True)
 
             # ----------------- BENTO KPI GRID -----------------
@@ -1081,11 +1030,11 @@ with tab_product:
                 st.markdown(f"""
                 <div class="bento-card">
                     <div class="bento-header">
-                        <span class="bento-title">إجمالي المراجعات المفحوصة</span>
+                        <span class="bento-title">Total Analyzed Reviews</span>
                         <div class="bento-icon bento-icon-gold">{SVG_MESSAGE}</div>
                     </div>
                     <div class="bento-value">{total_revs}</div>
-                    <div class="bento-delta delta-neutral">مراجعات عملاء موثقة</div>
+                    <div class="bento-delta delta-neutral">Verified Customer Feedback</div>
                 </div>
                 """, unsafe_allow_html=True)
             with k2:
@@ -1093,35 +1042,35 @@ with tab_product:
                 st.markdown(f"""
                 <div class="bento-card">
                     <div class="bento-header">
-                        <span class="bento-title">معدل الرضا العام (CSAT)</span>
+                        <span class="bento-title">Customer Satisfaction (CSAT)</span>
                         <div class="bento-icon bento-icon-emerald">{SVG_TREND_UP}</div>
                     </div>
                     <div class="bento-value" style="color:#059669;">{csat_score:.1f}%</div>
-                    <div class="bento-delta {delta_class}">+ {pos_count} من {total_revs} راضون ({pos_ratio:.0f}%)</div>
+                    <div class="bento-delta {delta_class}">+ {pos_count} of {total_revs} satisfied ({pos_ratio:.0f}%)</div>
                 </div>
                 """, unsafe_allow_html=True)
             with k3:
                 st.markdown(f"""
                 <div class="bento-card">
                     <div class="bento-header">
-                        <span class="bento-title">معدل الشكاوى والمخاطر</span>
+                        <span class="bento-title">Critical Defect & Risk Rate</span>
                         <div class="bento-icon bento-icon-rose">{SVG_SHIELD_ALERT}</div>
                     </div>
                     <div class="bento-value" style="color:#DC2626;">{neg_ratio:.1f}%</div>
-                    <div class="bento-delta delta-down">- {neg_count} مراجعات سلبية تتطلب تدخلاً</div>
+                    <div class="bento-delta delta-down">- {neg_count} complaints requiring action</div>
                 </div>
                 """, unsafe_allow_html=True)
             with k4:
-                status_label = "ممتاز" if csat_score >= 80 else ("مستقر" if csat_score >= 65 else "خطر مرتفع")
+                status_label = "Excellent" if csat_score >= 80 else ("Stable" if csat_score >= 65 else "High Risk")
                 status_color = "#059669" if csat_score >= 80 else ("#D97706" if csat_score >= 65 else "#DC2626")
                 st.markdown(f"""
                 <div class="bento-card">
                     <div class="bento-header">
-                        <span class="bento-title">مؤشر صحة المنتج بالسوق</span>
+                        <span class="bento-title">Market Health Index</span>
                         <div class="bento-icon bento-icon-indigo">{SVG_PULSE}</div>
                     </div>
                     <div class="bento-value" style="font-size:1.6rem; color:{status_color};">{status_label}</div>
-                    <div class="bento-delta delta-neutral">&#9733; متوسط التقييم: <b style="color:#0F172A;">{avg_rating:.1f}</b> من 5.0</div>
+                    <div class="bento-delta delta-neutral">&#9733; Average Rating: <b style="color:#0F172A;">{avg_rating:.1f}</b> / 5.0</div>
                 </div>
                 """, unsafe_allow_html=True)
 
@@ -1131,9 +1080,9 @@ with tab_product:
             col_chart_left, col_chart_right = st.columns(2)
             
             with col_chart_left:
-                st.markdown("##### توزيع مشاعر العملاء (AI Sentiment Distribution)")
+                st.markdown("##### AI Customer Sentiment Distribution")
                 fig_donut = go.Figure(data=[go.Pie(
-                    labels=['إيجابي (Positive)', 'سلبي (Negative)'],
+                    labels=['Positive', 'Negative'],
                     values=[pos_count, neg_count],
                     hole=.62,
                     marker=dict(colors=['#10B981', '#EF4444']),
@@ -1151,142 +1100,166 @@ with tab_product:
                 st.plotly_chart(fig_donut, use_container_width=True)
 
             with col_chart_right:
-                st.markdown("##### تحليل تقييمات النجوم (Star Ratings Breakdown)")
-                if 'Score' in reviews_df.columns:
-                    score_counts = reviews_df['Score'].value_counts().sort_index(ascending=False).reset_index()
-                    score_counts.columns = ['Stars', 'Count']
-                    score_counts['Stars_Label'] = score_counts['Stars'].apply(lambda s: f"{s} Star{'s' if s>1 else ''}")
-                    
-                    fig_stars = px.bar(
-                        score_counts, x="Count", y="Stars_Label", orientation='h',
-                        color="Count", color_continuous_scale="Tealgrn"
-                    )
-                    fig_stars.update_layout(
-                        height=270,
-                        margin=dict(l=10, r=10, t=10, b=10),
-                        paper_bgcolor="rgba(0,0,0,0)",
-                        plot_bgcolor="rgba(0,0,0,0)",
-                        coloraxis_showscale=False,
-                        xaxis=dict(showgrid=True, gridcolor="#E2E8F0", zeroline=False),
-                        yaxis=dict(autorange="reversed")
-                    )
-                    st.plotly_chart(fig_stars, use_container_width=True)
+                st.markdown("##### Customer Rating Breakdown (Stars)")
+                score_counts = reviews_df['Score'].value_counts().sort_index(ascending=True) if 'Score' in reviews_df.columns else pd.Series()
+                star_df = pd.DataFrame({
+                    "Stars": [f"{s} Star" for s in range(1, 6)],
+                    "Count": [int(score_counts.get(s, 0)) for s in range(1, 6)]
+                })
+                fig_bar = px.bar(
+                    star_df, x="Count", y="Stars", orientation="h",
+                    color="Stars",
+                    color_discrete_map={
+                        "5 Star": "#10B981", "4 Star": "#34D399", "3 Star": "#94A3B8",
+                        "2 Star": "#F59E0B", "1 Star": "#EF4444"
+                    }
+                )
+                fig_bar.update_layout(
+                    height=270, margin=dict(l=10, r=10, t=10, b=10),
+                    paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+                    showlegend=False, xaxis=dict(showgrid=True, gridcolor="#E2E8F0"),
+                    yaxis=dict(autorange="reversed")
+                )
+                st.plotly_chart(fig_bar, use_container_width=True)
 
-            # ----------------- ROOT CAUSES & STRENGTHS -----------------
-            st.markdown("#### تحليلات ذكاء السوق التنافسية (Competitive Insights)")
-            pro_bullets, con_bullets = generate_dynamic_insights(reviews_df, prod_title)
-            
-            c_pro, c_con = st.columns(2)
-            with c_pro:
-                pro_html = "".join([f"<li>{b}</li>" for b in pro_bullets])
-                st.markdown(f"""
-                <div class="insight-box insight-pos">
-                    <h5 style="color:#065F46; margin:0 0 10px 0; font-weight:700; display:flex; align-items:center; gap:6px;">
-                        {SVG_CHECK} أبرز نقاط القوة ومميزات المنتج
-                    </h5>
-                    <ul style="margin:0; padding-right:20px; color:#334155; line-height:1.8; font-size:0.92rem;">
-                        {pro_html}
-                    </ul>
-                </div>
-                """, unsafe_allow_html=True)
-
-            with c_con:
-                con_html = "".join([f"<li>{b}</li>" for b in con_bullets])
-                st.markdown(f"""
-                <div class="insight-box insight-neg">
-                    <h5 style="color:#991B1B; margin:0 0 10px 0; font-weight:700; display:flex; align-items:center; gap:6px;">
-                        {SVG_ALERT} عيوب المنتج ونقاط الضعف التي اشتكى منها المشترون
-                    </h5>
-                    <ul style="margin:0; padding-right:20px; color:#334155; line-height:1.8; font-size:0.92rem;">
-                        {con_html}
-                    </ul>
-                </div>
-                """, unsafe_allow_html=True)
-
-            # ----------------- AI DUAL DECISION ENGINE (BUYER & SELLER) -----------------
             st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown(f"#### {SVG_AI_CPU} نظام القرار الذكي المزدوج: تقييم الجدارة للمشتري والتاجر", unsafe_allow_html=True)
-            st.caption("تحليل إحصائي واستراتيجي يربط مخرجات مشاعر المراجعات بالبيانات المرجعية التاريخية لمنصة أمازون (45,476 مراجعة) لتوجيه قرار الشراء للمستهلك وقرار الاستثمار والتجارة للبائع:")
 
+            # ----------------- DUAL STRATEGIC DECISIONS: BUYER & SELLER -----------------
             dec = generate_buyer_seller_decision(reviews_df, avg_rating, csat_score, neg_ratio, cat_info)
 
-            col_buyer, col_seller = st.columns(2)
-
-            with col_buyer:
-                buyer_bullets_html = "".join([f"<li style='margin-bottom:6px;'>{b}</li>" for b in dec['buyer_bullets']])
+            c_dec1, c_dec2 = st.columns(2)
+            with c_dec1:
                 st.markdown(f"""
                 <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-top:4px solid {dec['buyer_badge_color']}; border-radius:12px; padding:20px 22px; box-shadow:0 1px 3px rgba(15,23,42,0.04); min-height:260px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
-                        <div style="font-weight:800; color:#0F172A; font-size:1.05rem;">دليل وقرار المشتري (Consumer Advice)</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-weight:800; font-size:1rem; color:#0F172A;">Customer Purchase Advisory</span>
                         <span style="background:{dec['buyer_badge_bg']}; color:{dec['buyer_badge_color']}; font-weight:800; font-size:0.8rem; padding:4px 12px; border-radius:9999px;">
                             {dec['buyer_badge']}
                         </span>
                     </div>
                     <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px 14px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="color:#64748B; font-size:0.85rem; font-weight:700;">درجة الجدارة الشرائية للمستهلك:</span>
-                        <span style="color:{dec['buyer_badge_color']}; font-size:1.2rem; font-weight:900;">{dec['buyer_score']} / 10</span>
+                        <span style="color:#64748B; font-size:0.85rem; font-weight:600;">Purchase Merit Score:</span>
+                        <span style="font-size:1.15rem; font-weight:800; color:{dec['buyer_badge_color']};">{dec['buyer_score']} / 10.0</span>
                     </div>
-                    <ul style="margin:0; padding-right:18px; color:#334155; font-size:0.9rem; line-height:1.7;">
-                        {buyer_bullets_html}
+                    <ul style="margin:0; padding-left:20px; color:#334155; font-size:0.88rem; line-height:1.7;">
+                        {"".join([f'<li style="margin-bottom:6px;">{b}</li>' for b in dec['buyer_bullets']])}
                     </ul>
                 </div>
                 """, unsafe_allow_html=True)
 
-            with col_seller:
-                seller_bullets_html = "".join([f"<li style='margin-bottom:6px;'>{b}</li>" for b in dec['seller_bullets']])
+            with c_dec2:
                 st.markdown(f"""
                 <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-top:4px solid {dec['seller_badge_color']}; border-radius:12px; padding:20px 22px; box-shadow:0 1px 3px rgba(15,23,42,0.04); min-height:260px;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
-                        <div style="font-weight:800; color:#0F172A; font-size:1.05rem;">جدوى التاجر والمستثمر (Seller Feasibility)</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <span style="font-weight:800; font-size:1rem; color:#0F172A;">Merchant Feasibility & Strategic Directives</span>
                         <span style="background:{dec['seller_badge_bg']}; color:{dec['seller_badge_color']}; font-weight:800; font-size:0.8rem; padding:4px 12px; border-radius:9999px;">
                             {dec['seller_badge']}
                         </span>
                     </div>
                     <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px 14px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center;">
-                        <span style="color:#64748B; font-size:0.85rem; font-weight:700;">مؤشر الأمان التشغيلي vs السوق:</span>
-                        <span style="color:{dec['seller_badge_color']}; font-size:1.2rem; font-weight:900;">{dec['ops_stability']}% أمان</span>
+                        <div>
+                            <span style="color:#64748B; font-size:0.82rem; font-weight:600;">Return Risk: </span>
+                            <b style="color:#0F172A; font-size:0.85rem;">{dec['return_risk']}</b>
+                        </div>
+                        <div>
+                            <span style="color:#64748B; font-size:0.82rem; font-weight:600;">FBA Stability: </span>
+                            <b style="color:{dec['seller_badge_color']}; font-size:0.85rem;">{dec['ops_stability']}%</b>
+                        </div>
                     </div>
-                    <div style="font-size:0.82rem; color:#64748B; margin-bottom:10px; font-weight:700;">
-                        معدل المرتجعات التقديري: <span style="color:{dec['seller_badge_color']}; font-weight:800;">{dec['return_risk']}</span>
-                    </div>
-                    <ul style="margin:0; padding-right:18px; color:#334155; font-size:0.9rem; line-height:1.7;">
-                        {seller_bullets_html}
+                    <ul style="margin:0; padding-left:20px; color:#334155; font-size:0.88rem; line-height:1.7;">
+                        {"".join([f'<li style="margin-bottom:6px;">{b}</li>' for b in dec['seller_bullets']])}
                     </ul>
                 </div>
                 """, unsafe_allow_html=True)
 
-            # ----------------- REVIEWS FEED -----------------
             st.markdown("<br>", unsafe_allow_html=True)
-            st.markdown("#### مراجعات المشترين الفعلية وتصنيف الذكاء الاصطناعي لكل مراجعة")
+
+            # ----------------- DYNAMIC EXTRACTED HIGHLIGHTS -----------------
+            pro_bullets, con_bullets = generate_dynamic_insights(reviews_df, prod_title)
             
-            filter_choice = st.radio("تصفية المراجعات حسب الشعور:", ["الكل (All)", "الإيجابية فقط (Positive)", "السلبية فقط (Negative)"], horizontal=True)
+            c_ins1, c_ins2 = st.columns(2)
+            with c_ins1:
+                st.markdown(f"""
+                <div class="insight-box insight-pos">
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                        {SVG_CHECK}
+                        <h4 style="margin:0; color:#065F46; font-weight:800; font-size:0.98rem;">Key Product Strengths & Positive Sentiments</h4>
+                    </div>
+                    <ul style="margin:0; padding-left:20px; color:#334155; font-size:0.88rem; line-height:1.7;">
+                        {"".join([f'<li style="margin-bottom:8px;">{b}</li>' for b in pro_bullets])}
+                    </ul>
+                </div>
+                """, unsafe_allow_html=True)
+            with c_ins2:
+                st.markdown(f"""
+                <div class="insight-box insight-neg">
+                    <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+                        {SVG_ALERT}
+                        <h4 style="margin:0; color:#991B1B; font-weight:800; font-size:0.98rem;">Critical Complaints & Operational Vulnerabilities</h4>
+                    </div>
+                    <ul style="margin:0; padding-left:20px; color:#334155; font-size:0.88rem; line-height:1.7;">
+                        {"".join([f'<li style="margin-bottom:8px;">{b}</li>' for b in con_bullets])}
+                    </ul>
+                </div>
+                """, unsafe_allow_html=True)
+
+            st.markdown("<br>", unsafe_allow_html=True)
+
+            # ----------------- REVIEW FEED & FILTERING -----------------
+            st.markdown("##### Customer Review Feed & AI Predictions")
             
+            f_col1, f_col2, f_col3 = st.columns([2, 1, 1])
+            with f_col1:
+                search_query = st.text_input("Filter reviews by keyword:", placeholder="Search text or headline...", label_visibility="collapsed")
+            with f_col2:
+                filter_sentiment = st.selectbox(
+                    "Filter Sentiment:",
+                    ["All Reviews", "Positive Only", "Negative Only"],
+                    label_visibility="collapsed"
+                )
+            with f_col3:
+                filter_rating = st.selectbox(
+                    "Filter Rating:",
+                    ["All Star Ratings", "5 Stars", "4 Stars", "3 Stars", "2 Stars", "1 Star"],
+                    label_visibility="collapsed"
+                )
+
             filtered_df = reviews_df.copy()
-            if "الإيجابية" in filter_choice:
+            if search_query:
+                filtered_df = filtered_df[
+                    filtered_df['Text'].str.contains(search_query, case=False, na=False) |
+                    filtered_df['Summary'].str.contains(search_query, case=False, na=False)
+                ]
+            if filter_sentiment == "Positive Only":
                 filtered_df = filtered_df[filtered_df['AI_Sentiment'] == "Positive"]
-            elif "السلبية" in filter_choice:
+            elif filter_sentiment == "Negative Only":
                 filtered_df = filtered_df[filtered_df['AI_Sentiment'] == "Negative"]
 
-            st.caption(f"عرض {len(filtered_df)} مراجعة:")
-            for idx, r in filtered_df.head(15).iterrows():
-                is_pos = r['AI_Sentiment'] == "Positive"
-                pill_class = "pill-badge-pos" if is_pos else "pill-badge-neg"
-                dot_class = "status-dot-pos" if is_pos else "status-dot-neg"
-                pill_icon = "POSITIVE" if is_pos else "NEGATIVE"
-                
-                score_int = int(r.get('Score', 5))
-                stars_txt = "".join([SVG_STAR for _ in range(score_int)])
-                summary = r.get('Summary', '')
-                body = r.get('Text', '')
-                author = r.get('ProfileName', 'Amazon Customer')
-                initials = "".join([w[0].upper() for w in author.split()[:2]]) if author else "AC"
-                conf = r.get('Confidence', 95.0)
-                engine_badge = "ML Model (Linear SVM)" 
+            if filter_rating != "All Star Ratings":
+                star_num = int(filter_rating.split()[0])
+                filtered_df = filtered_df[filtered_df['Score'] == star_num]
+
+            st.caption(f"Displaying {len(filtered_df)} of {total_revs} reviews:")
+
+            for _, row in filtered_df.head(25).iterrows():
+                author = row.get('ProfileName', 'Verified Amazon Customer')
+                if not author or str(author).strip().lower() in ["nan", "none"]:
+                    author = "Verified Amazon Customer"
+                score_v = int(row.get('Score', 5))
+                stars_txt = SVG_STAR * score_v
+                summary = row.get('Summary', '')
+                body = row.get('Text', '')
+                sent = row.get('AI_Sentiment', 'Positive')
+                conf = float(row.get('Confidence', 90.0))
+
+                pill_class = "pill-pos" if sent == "Positive" else "pill-neg"
+                dot_class = "dot-pos" if sent == "Positive" else "dot-neg"
+                initials = author[:2].upper()
 
                 st.markdown(f"""
-                <div class="modern-review-card">
-                    <div class="modern-review-header">
-                        <div class="user-info">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-user-info">
                             <div class="user-avatar">{initials}</div>
                             <div>
                                 <div class="user-name">{author}</div>
@@ -1295,7 +1268,7 @@ with tab_product:
                         </div>
                         <div class="pill-badge {pill_class}">
                             <span class="status-dot {dot_class}"></span>
-                            {engine_badge}: {pill_icon} ({conf:.1f}%)
+                            {sent} ({conf:.1f}%)
                         </div>
                     </div>
                     {f'<div class="review-headline">{summary}</div>' if summary else ''}
@@ -1303,27 +1276,27 @@ with tab_product:
                 </div>
                 """, unsafe_allow_html=True)
 
-            # ----------------- EXPORT CSV SECTION -----------------
+            # ----------------- EXPORT REPORT SECTION -----------------
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown("---")
             exp_col1, exp_col2, exp_col3 = st.columns([2, 1, 1])
             with exp_col1:
                 st.markdown(f"""
                 <div style="padding:8px 0;">
-                    <span style="font-weight:700; color:#0F172A; font-size:0.95rem;">تصدير نتائج التحليل</span>
-                    <span style="font-size:0.82rem; color:#64748B; margin-right:8px;">({total_revs} مراجعة محللة لـ {prod_title[:40]})</span>
+                    <span style="font-weight:700; color:#0F172A; font-size:0.95rem;">Export Analysis Report</span>
+                    <span style="font-size:0.82rem; color:#64748B; margin-left:8px;">({total_revs} analyzed reviews for {prod_title[:40]})</span>
                 </div>
                 """, unsafe_allow_html=True)
             with exp_col2:
                 export_df = reviews_df[['ProfileName', 'Score', 'Summary', 'Text', 'AI_Sentiment', 'Confidence', 'Engine']].copy()
-                export_df.columns = ['الاسم', 'التقييم', 'العنوان', 'نص المراجعة', 'تصنيف AI', 'نسبة الثقة %', 'المحرك المستخدم']
+                export_df.columns = ['Customer Name', 'Rating', 'Review Headline', 'Review Body', 'AI Sentiment', 'Confidence %', 'Model Engine']
                 
                 # Build formatted Excel (.xlsx) workbook in-memory
                 excel_buffer = io.BytesIO()
                 with pd.ExcelWriter(excel_buffer, engine="openpyxl") as xl_writer:
                     export_df.to_excel(xl_writer, sheet_name="Product Reviews", index=False)
                     ws_rev = xl_writer.sheets["Product Reviews"]
-                    ws_rev.views.sheetView[0].rightToLeft = True
+                    ws_rev.views.sheetView[0].rightToLeft = False
                     ws_rev.showGridLines = True
                     
                     hdr_fill = PatternFill(start_color="1E3A8A", end_color="1E3A8A", fill_type="solid")
@@ -1364,7 +1337,7 @@ with tab_product:
                                 cell.fill = pos_fill if is_pos else neg_fill
                                 cell.font = pos_font if is_pos else neg_font
                             else:
-                                cell.alignment = Alignment(horizontal="right", vertical="center")
+                                cell.alignment = Alignment(horizontal="left", vertical="center")
                                 
                     # Column widths
                     for col in ws_rev.columns:
@@ -1374,7 +1347,7 @@ with tab_product:
                         
                 excel_bytes = excel_buffer.getvalue()
                 st.download_button(
-                    label="📊 تحميل تقرير Excel (XLSX)",
+                    label="📊 Download Excel Report (.xlsx)",
                     data=excel_bytes,
                     file_name=f"amazon_analysis_{asin}.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -1383,7 +1356,7 @@ with tab_product:
             with exp_col3:
                 csv_bytes = export_df.to_csv(index=False, encoding='utf-8-sig').encode('utf-8-sig')
                 st.download_button(
-                    label="تحميل CSV بديل",
+                    label="Download CSV (.csv)",
                     data=csv_bytes,
                     file_name=f"amazon_analysis_{asin}.csv",
                     mime="text/csv",
@@ -1392,8 +1365,8 @@ with tab_product:
 
 # ================= TAB 2: GLOBAL STORE BENCHMARK =================
 with tab_dashboard:
-    st.markdown("#### لوحة المراقبة الشاملة لمتجر أمازون ككل (Global Store Benchmark - 45,476 Reviews)")
-    st.caption("تحليل إحصائي كلي وشامل لـ 45,476 مراجعة عبر كافة أقسام أمازون (amazon_reviews_raw.csv) لقياس أداء المتجر العام أو تصفية وتحليل أداء كل سوق/قسم على حدة:")
+    st.markdown("#### Global Amazon Store Benchmark & Department Intelligence (45,476 Reviews)")
+    st.caption("Platform-wide statistical benchmark across 45,476 Amazon reviews (amazon_reviews_raw.csv) to evaluate overall store health or isolate individual department dynamics:")
 
     # Base dataset global stats
     if df_raw is not None and len(df_raw) > 0 and 'Score' in df_raw.columns:
@@ -1416,21 +1389,21 @@ with tab_dashboard:
         base_score_counts = {5: 28997, 4: 6534, 3: 3401, 2: 2365, 1: 4179}
 
     # ----------------- DROPDOWN MARKET SELECTOR -----------------
-    market_dropdown_options = ["المنصة العامة لكافة الأقسام (All Platform Benchmark - 45,476 مراجعة)"] + [
-        f"{c['name_ar']} ({c['name_en']})" for c in STORE_CATEGORIES_DATA
+    market_dropdown_options = ["All Platform Benchmark (45,476 Total Reviews)"] + [
+        c['name_en'] for c in STORE_CATEGORIES_DATA
     ]
 
     selected_market_label = st.selectbox(
-        "تحديد قطاع السوق / قسم المتجر للتحليل:",
+        "Select Market Sector / Store Department:",
         options=market_dropdown_options,
         index=0,
-        help="اختر قسماً معيناً لعرض مؤشرات أدائه المستقلة أو اختر المنصة العامة لاستعراض المعيار الكلي."
+        help="Select a specific department to view isolated performance benchmarks, or select All Platform to view platform-wide indicators."
     )
 
-    is_all_markets = "المنصة العامة" in selected_market_label
+    is_all_markets = "All Platform" in selected_market_label
 
     if is_all_markets:
-        curr_title = "متجر أمازون ككل (المنصة العامة)"
+        curr_title = "All Platform Benchmark"
         curr_total = base_total
         curr_pos = base_pos
         curr_neg = base_neg
@@ -1441,9 +1414,8 @@ with tab_dashboard:
         curr_scores = base_score_counts
         selected_cat_data = None
     else:
-        # Match selected category
-        selected_cat_data = next((c for c in STORE_CATEGORIES_DATA if c['name_ar'] in selected_market_label), STORE_CATEGORIES_DATA[0])
-        curr_title = f"قسم {selected_cat_data['name_ar']}"
+        selected_cat_data = next((c for c in STORE_CATEGORIES_DATA if c['name_en'] == selected_market_label), STORE_CATEGORIES_DATA[0])
+        curr_title = selected_cat_data['name_en']
         curr_total = selected_cat_data['reviews']
         curr_pos = selected_cat_data['pos_reviews']
         curr_neg = selected_cat_data['neg_reviews']
@@ -1453,7 +1425,7 @@ with tab_dashboard:
         curr_avg = selected_cat_data['avg_rating']
         curr_scores = selected_cat_data['score_counts']
 
-    # If specific category selected, display its Market Profile Card
+    # Market Profile Card for Department
     if not is_all_markets and selected_cat_data:
         st.markdown(f"""
         <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-top:4px solid {selected_cat_data['badge_color']}; border-radius:12px; padding:18px 22px; margin-top:8px; margin-bottom:18px; box-shadow:0 1px 3px rgba(15,23,42,0.03);">
@@ -1463,24 +1435,24 @@ with tab_dashboard:
                         {selected_cat_data['icon']}
                     </div>
                     <div>
-                        <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:800;">{selected_cat_data['name_ar']}</h3>
-                        <span style="font-size:0.75rem; color:#64748B; font-weight:600;">{selected_cat_data['name_en']}</span>
+                        <h3 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:800;">{selected_cat_data['name_en']}</h3>
+                        <span style="font-size:0.75rem; color:#64748B; font-weight:600;">Department Scope: {selected_cat_data['tag']}</span>
                     </div>
                 </div>
                 <div style="display:flex; gap:8px; align-items:center;">
                     <span style="background:{selected_cat_data['badge_bg']}; color:{selected_cat_data['badge_color']}; padding:5px 14px; border-radius:9999px; font-size:0.8rem; font-weight:800; border:1px solid {selected_cat_data['badge_color']}33;">
-                        {selected_cat_data['status']}
+                        {selected_cat_data['status_en']}
                     </span>
                     <span style="background:#F1F5F9; color:#475569; padding:5px 14px; border-radius:9999px; font-size:0.8rem; font-weight:700;">
-                        الحصة السوقية: {selected_cat_data['share_pct']}%
+                        Market Share: {selected_cat_data['share_pct']}%
                     </span>
                 </div>
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:10px 14px; margin-bottom:10px; font-size:0.88rem; color:#334155; line-height:1.6;">
-                <b>نطاق السلع والمنتجات المشمولة:</b> {selected_cat_data['scope']}
+                <b>Inventory Scope & Eligible Products:</b> {selected_cat_data['scope_en']}
             </div>
             <div style="font-size:0.86rem; color:#065F46; background:#ECFDF5; border:1px solid #A7F3D0; border-radius:8px; padding:10px 14px; line-height:1.6;">
-                <b>توجيه استراتيجي للتاجر والمستثمر:</b> {selected_cat_data['recommendation']}
+                <b>Merchant & Investor Strategic Directive:</b> {selected_cat_data['recommendation_en']}
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1488,11 +1460,11 @@ with tab_dashboard:
     # 4 Bento KPI Cards dynamically updating for selected market
     k_a, k_b, k_c, k_d = st.columns(4)
     with k_a:
-        delta_rev = f"حساب حي من عينة المتجر" if is_all_markets else f"{selected_cat_data['share_pct']}% من حركة المنصة"
+        delta_rev = "Live verified historical corpus" if is_all_markets else f"{selected_cat_data['share_pct']}% of platform volume"
         st.markdown(f"""
         <div class="bento-card">
             <div class="bento-header">
-                <span class="bento-title">إجمالي المراجعات المفحوصة</span>
+                <span class="bento-title">Total Reviews Analyzed</span>
                 <div class="bento-icon bento-icon-gold">{SVG_PACKAGE}</div>
             </div>
             <div class="bento-value">{curr_total:,}</div>
@@ -1503,33 +1475,33 @@ with tab_dashboard:
         st.markdown(f"""
         <div class="bento-card">
             <div class="bento-header">
-                <span class="bento-title">معدل رضا المشترين (CSAT)</span>
+                <span class="bento-title">Customer Satisfaction (CSAT)</span>
                 <div class="bento-icon bento-icon-emerald">{SVG_TREND_UP}</div>
             </div>
             <div class="bento-value" style="color:#059669;">{curr_sat:.1f}%</div>
-            <div class="bento-delta delta-up">+ {curr_pos:,} تقييم إيجابي (4-5 نجوم)</div>
+            <div class="bento-delta delta-up">+ {curr_pos:,} positive reviews (4-5 stars)</div>
         </div>
         """, unsafe_allow_html=True)
     with k_c:
         st.markdown(f"""
         <div class="bento-card">
             <div class="bento-header">
-                <span class="bento-title">المراجعات السلبية ونسبة المخاطر</span>
+                <span class="bento-title">Defect & Risk Ratio</span>
                 <div class="bento-icon bento-icon-rose">{SVG_SHIELD_ALERT}</div>
             </div>
             <div class="bento-value" style="color:#DC2626;">{curr_risk:.1f}%</div>
-            <div class="bento-delta delta-down">- {curr_neg:,} شكوى تتطلب تدخلاً</div>
+            <div class="bento-delta delta-down">- {curr_neg:,} actionable complaints</div>
         </div>
         """, unsafe_allow_html=True)
     with k_d:
         st.markdown(f"""
         <div class="bento-card">
             <div class="bento-header">
-                <span class="bento-title">متوسط التقييم بالنجوم</span>
+                <span class="bento-title">Average Star Rating</span>
                 <div class="bento-icon bento-icon-indigo">{SVG_STAR}</div>
             </div>
             <div class="bento-value">{curr_avg:.2f} <span style="font-size:1.1rem; color:#64748B;">/ 5.0</span></div>
-            <div class="bento-delta delta-neutral">{curr_neu:,} مراجعة محايدة (3 نجوم)</div>
+            <div class="bento-delta delta-neutral">{curr_neu:,} neutral reviews (3 stars)</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1537,10 +1509,9 @@ with tab_dashboard:
 
     # If All Markets is selected, show the 5 departments overview cards & comparison charts
     if is_all_markets:
-        st.markdown(f"#### {SVG_STORE} نظرة عامة ومقارنة بين أقسام المتجر الخمسة (Store Departments Comparison)", unsafe_allow_html=True)
-        st.caption("توزيع إجمالي مراجعات المنصة الـ 45,476 ومقارنة مستويات الرضا والحصة السوقية بين كافة الأقسام:")
+        st.markdown(f"#### {SVG_STORE} Overview & Comparison Across All 5 Store Departments", unsafe_allow_html=True)
+        st.caption("Distribution of the 45,476 platform reviews and comparison of CSAT and market share across departments:")
 
-        # 5 Department Cards in Columns
         cat_cols = st.columns(5)
         for idx, cdata in enumerate(STORE_CATEGORIES_DATA):
             with cat_cols[idx]:
@@ -1550,20 +1521,20 @@ with tab_dashboard:
                         <div style="background:{cdata['badge_bg']}; color:{cdata['badge_color']}; width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
                             {cdata['icon']}
                         </div>
-                        <div style="font-weight:800; color:#0F172A; font-size:0.86rem; line-height:1.35; min-height:44px;">{cdata['name_ar']}</div>
-                        <div style="font-size:0.7rem; color:#64748B; margin-top:2px;">{cdata['name_en']}</div>
+                        <div style="font-weight:800; color:#0F172A; font-size:0.86rem; line-height:1.35; min-height:44px;">{cdata['name_en']}</div>
+                        <div style="font-size:0.7rem; color:#64748B; margin-top:2px;">{cdata['tag']}</div>
                     </div>
                     <div style="margin-top:12px; border-top:1px solid #F1F5F9; padding-top:10px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                            <span style="font-size:0.75rem; color:#64748B;">متوسط التقييم:</span>
+                            <span style="font-size:0.75rem; color:#64748B;">Avg Rating:</span>
                             <span style="font-weight:800; color:#0F172A; font-size:0.85rem;">★ {cdata['avg_rating']}</span>
                         </div>
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                            <span style="font-size:0.75rem; color:#64748B;">معدل الرضا:</span>
+                            <span style="font-size:0.75rem; color:#64748B;">CSAT Rate:</span>
                             <span style="font-weight:800; color:#059669; font-size:0.85rem;">{cdata['csat']}%</span>
                         </div>
                         <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-size:0.75rem; color:#64748B;">المراجعات:</span>
+                            <span style="font-size:0.75rem; color:#64748B;">Volume:</span>
                             <span style="font-weight:700; color:#334155; font-size:0.78rem;">{cdata['reviews']:,} ({cdata['share_pct']}%)</span>
                         </div>
                     </div>
@@ -1575,27 +1546,27 @@ with tab_dashboard:
         # Visual Comparison Charts for Store Departments
         c_cat1, c_cat2 = st.columns([3, 2])
         with c_cat1:
-            st.markdown("##### مقارنة معدل رضا المشترين (CSAT) عبر الأقسام")
-            st.caption("مقارنة مستوى الرضا وجودة الخدمة لكل مجال تجاري ينشط فيه المتجر:")
+            st.markdown("##### Customer Satisfaction Rate (CSAT) Across Departments")
+            st.caption("Comparison of service quality and satisfaction levels across departments:")
             
             df_cat_chart = pd.DataFrame([
                 {
-                    "القسم": c['name_ar'][:18],
-                    "معدل الرضا (%)": c["csat"],
-                    "متوسط النجوم": c["avg_rating"],
-                    "حجم المراجعات": c["reviews"]
+                    "Department": c['name_en'][:22],
+                    "CSAT (%)": c["csat"],
+                    "Average Rating": c["avg_rating"],
+                    "Reviews Volume": c["reviews"]
                 }
                 for c in STORE_CATEGORIES_DATA
             ])
             
             fig_cat_bar = px.bar(
                 df_cat_chart,
-                x="معدل الرضا (%)",
-                y="القسم",
+                x="CSAT (%)",
+                y="Department",
                 orientation="h",
-                color="معدل الرضا (%)",
+                color="CSAT (%)",
                 color_continuous_scale="Tealgrn",
-                text="معدل الرضا (%)"
+                text="CSAT (%)"
             )
             fig_cat_bar.update_traces(texttemplate='%{text:.1f}%', textposition='inside')
             fig_cat_bar.update_layout(
@@ -1610,13 +1581,13 @@ with tab_dashboard:
             st.plotly_chart(fig_cat_bar, use_container_width=True)
 
         with c_cat2:
-            st.markdown("##### الحصة السوقية وتوزيع المراجعات بين الأقسام")
-            st.caption(f"توزيع إجمالي {base_total:,} مراجعة على قطاعات المنصة:")
+            st.markdown("##### Market Share & Volume Distribution")
+            st.caption(f"Breakdown of {base_total:,} reviews across departments:")
             
             fig_cat_pie = px.pie(
                 df_cat_chart,
-                values="حجم المراجعات",
-                names="القسم",
+                values="Reviews Volume",
+                names="Department",
                 hole=0.45,
                 color_discrete_sequence=["#059669", "#2563EB", "#D97706", "#7C3AED", "#10B981"]
             )
@@ -1628,19 +1599,19 @@ with tab_dashboard:
             )
             st.plotly_chart(fig_cat_pie, use_container_width=True)
 
-        # Department Detailed Table & Operational Directives
-        with st.expander("عرض جدول المواصفات ونطاق المنتجات والتوجيهات التشغيلية لكل قسم", expanded=False):
+        # Department Detailed Table
+        with st.expander("View Department Specifications, Inventory Scope & Operational Directives", expanded=False):
             table_cats = []
             for c in STORE_CATEGORIES_DATA:
                 table_cats.append({
-                    "القسم التجاري": c['name_ar'],
-                    "نطاق السلع والمنتجات المشمولة": c['scope'],
-                    "المراجعات": f"{c['reviews']:,} ({c['share_pct']}%)",
-                    "التقييم (Stars)": f"★ {c['avg_rating']:.2f}",
-                    "الرضا (CSAT)": f"{c['csat']:.1f}%",
-                    "المخاطر": f"{c['risk']:.1f}%",
-                    "الحالة التشغيلية": c['status'],
-                    "توجيهات التاجر": c['recommendation']
+                    "Department": c['name_en'],
+                    "Product Scope": c['scope_en'],
+                    "Review Volume": f"{c['reviews']:,} ({c['share_pct']}%)",
+                    "Avg Rating": f"★ {c['avg_rating']:.2f}",
+                    "CSAT Rate": f"{c['csat']:.1f}%",
+                    "Defect Risk": f"{c['risk']:.1f}%",
+                    "Operational Status": c['status_en'],
+                    "Strategic Guidance": c['recommendation_en']
                 })
             st.dataframe(pd.DataFrame(table_cats), use_container_width=True)
 
@@ -1649,52 +1620,52 @@ with tab_dashboard:
     # Dynamic Root Causes and Rating Distribution for the selected market
     c_d1, c_d2 = st.columns(2)
     with c_d1:
-        st.markdown(f"##### أسباب الشكاوى السلبية المستخرجة ({curr_title})")
-        st.caption(f"تحليل تكرار الأنماط والعيوب المرصودة في {curr_title}:")
+        st.markdown(f"##### Defect Root Causes & Customer Friction Points ({curr_title})")
+        st.caption(f"Distribution of actionable customer complaints in {curr_title}:")
 
         if is_all_markets:
             if df_raw is not None and 'Score' in df_raw.columns and 'Combined' in df_raw.columns:
                 neg_subset = df_raw[df_raw['Score'] <= 2]
                 themes = {
-                    "خيبة أمل وعدم مطابقة التوقعات (Disappointed)":  r"disappoint|not what i expect|mislead|not as described|nothing like",
-                    "جودة رديئة وعيوب تصنيع (Poor Quality)":          r"poor quality|cheap|defective|broke|stopped working|falling apart",
-                    "سعر مبالغ فيه مقابل القيمة (Overpriced)":        r"expensive|overpriced|rip off|not worth|waste of money|too costly",
-                    "توقف عن العمل أو عطل مبكر (Early Failure)":      r"stopped working|doesn.t work|broken|malfunction|dead|failed after",
-                    "تلف أثناء الشحن أو تغليف رديء (Damaged)":       r"damaged|broken|leak|cracked|smashed|arrived broken|packaging",
-                    "خدمة عملاء سيئة أو مشكلة إرجاع (Service)":      r"customer service|return|refund|no response|seller|support",
-                    "منتج مزيف أو غير أصلي (Counterfeit)":           r"fake|counterfeit|not genuine|not original|knock.?off|replica",
+                    "Disappointment & Expectation Mismatch": r"disappoint|not what i expect|mislead|not as described|nothing like",
+                    "Poor Build Quality & Material Defect":   r"poor quality|cheap|defective|broke|stopped working|falling apart",
+                    "Overpriced Relative to Value Delivered": r"expensive|overpriced|rip off|not worth|waste of money|too costly",
+                    "Early Failure / Stopped Working":       r"stopped working|doesn.t work|broken|malfunction|dead|failed after",
+                    "Damaged in Transit / Broken Packaging": r"damaged|broken|leak|cracked|smashed|arrived broken|packaging",
+                    "Poor Customer Service or Return Hassle": r"customer service|return|refund|no response|seller|support",
+                    "Suspected Counterfeit / Fake Item":     r"fake|counterfeit|not genuine|not original|knock.?off|replica",
                 }
                 defect_records = []
                 for lbl, pat in themes.items():
                     c_cnt = int(neg_subset['Combined'].str.contains(pat, case=False, regex=True).sum())
-                    defect_records.append({"سبب الشكوى": lbl, "عدد التكرار": c_cnt})
-                df_curr_defects = pd.DataFrame(defect_records).sort_values(by="عدد التكرار", ascending=True)
+                    defect_records.append({"Complaint Root Cause": lbl, "Occurrences": c_cnt})
+                df_curr_defects = pd.DataFrame(defect_records).sort_values(by="Occurrences", ascending=True)
             else:
                 df_curr_defects = pd.DataFrame({
-                    "سبب الشكوى": [
-                        "منتج مزيف أو غير أصلي (Counterfeit)",
-                        "خدمة عملاء سيئة أو مشكلة إرجاع (Service)",
-                        "تلف أثناء الشحن أو تغليف رديء (Damaged)",
-                        "سعر مبالغ فيه مقابل القيمة (Overpriced)",
-                        "توقف عن العمل أو عطل مبكر (Early Failure)",
-                        "جودة رديئة وعيوب تصنيع (Poor Quality)",
-                        "خيبة أمل وعدم مطابقة التوقعات (Disappointed)",
+                    "Complaint Root Cause": [
+                        "Suspected Counterfeit / Fake Item",
+                        "Poor Customer Service or Return Hassle",
+                        "Damaged in Transit / Broken Packaging",
+                        "Overpriced Relative to Value Delivered",
+                        "Early Failure / Stopped Working",
+                        "Poor Build Quality & Material Defect",
+                        "Disappointment & Expectation Mismatch",
                     ],
-                    "عدد التكرار": [140, 222, 243, 562, 580, 659, 1505]
+                    "Occurrences": [140, 222, 243, 562, 580, 659, 1505]
                 })
         else:
             df_curr_defects = pd.DataFrame(selected_cat_data['defects'])
 
-        fig_def = px.bar(df_curr_defects, x="عدد التكرار", y="سبب الشكوى", orientation='h', color="عدد التكرار", color_continuous_scale="Reds")
+        fig_def = px.bar(df_curr_defects, x="Occurrences", y="Complaint Root Cause", orientation='h', color="Occurrences", color_continuous_scale="Reds")
         fig_def.update_layout(height=320, margin=dict(l=10, r=10, t=10, b=10), paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", coloraxis_showscale=False)
         st.plotly_chart(fig_def, use_container_width=True)
 
     with c_d2:
-        st.markdown(f"##### توزيع تقييمات النجوم ({curr_title})")
-        st.caption(f"توزيع النجوم الفعلي لـ {curr_total:,} مراجعة مسجلة في {curr_title}:")
+        st.markdown(f"##### Rating Distribution Breakdown ({curr_title})")
+        st.caption(f"Star distribution across {curr_total:,} reviews recorded in {curr_title}:")
         dist_df = pd.DataFrame({
-            "التقييم": ["5 نجوم", "4 نجوم", "3 نجوم (محايد)", "نجمتان", "نجمة واحدة"],
-            "المراجعات": [
+            "Rating": ["5 Stars", "4 Stars", "3 Stars (Neutral)", "2 Stars", "1 Star"],
+            "Reviews": [
                 int(curr_scores.get(5, 0)),
                 int(curr_scores.get(4, 0)),
                 int(curr_scores.get(3, 0)),
@@ -1702,57 +1673,51 @@ with tab_dashboard:
                 int(curr_scores.get(1, 0))
             ]
         })
-        fig_dist = px.pie(dist_df, values="المراجعات", names="التقييم", color_discrete_sequence=["#10B981", "#34D399", "#94A3B8", "#F59E0B", "#EF4444"])
+        fig_dist = px.pie(dist_df, values="Reviews", names="Rating", color_discrete_sequence=["#10B981", "#34D399", "#94A3B8", "#F59E0B", "#EF4444"])
         fig_dist.update_layout(height=320, margin=dict(l=10, r=10, t=10, b=10), paper_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(fig_dist, use_container_width=True)
 
-    # Executive Recommendations tailored to the selected market
-    st.markdown(f"#### التوصيات التنفيذية والتشغيلية ({curr_title})")
+    # Executive Recommendations
+    st.markdown(f"#### Executive & Operational Recommendations ({curr_title})")
     if is_all_markets:
         st.markdown(f"""
-        1. **معالجة شكاوى الجودة وخيبة الأمل:** تمثل الشكاوى المتعلقة بضعف الجودة أو عدم مطابقة القيمة للسعر أكبر نسبة في المراجعات السلبية ({df_curr_defects.iloc[-1]['عدد التكرار']:,} حالة تكرار)، مما يستلزم مراجعة مواصفات السلع وإدارة توقعات المشترين.
-        2. **تقليل نسب المرتجعات:** استهداف نسبة الـ **{curr_risk:.1f}%** من المراجعات السلبية عبر الاستجابة الفورية لخدمة العملاء يسهم في حماية السمعة التجارية وتقليل تكاليف رد الأموال.
+        1. **Address Quality & Expectation Mismatches:** Complaints regarding build quality or pricing represent the highest share of customer dissatisfaction ({df_curr_defects.iloc[-1]['Occurrences']:,} occurrences). Catalog accuracy and realistic advertising are essential.
+        2. **Minimize Return Rates:** Actively targeting the **{curr_risk:.1f}%** negative complaint cohort through responsive customer support mitigates account health degradation and refund expenses.
         """)
     else:
         st.markdown(f"""
-        1. **إدارة عيوب هذا القطاع التجاري:** تشير البيانات إلى أن أبرز شكوى متكررة في **{selected_cat_data['name_ar']}** هي <i>({df_curr_defects.iloc[-1]['سبب الشكوى']})</i> بعدد {df_curr_defects.iloc[-1]['عدد التكرار']} شكوى؛ معالجة هذا العيب الجذري ترفع معدل الرضا فوراً.
-        2. **توجيه التاجر المالي:** معدل رضا القسم **{curr_sat:.1f}%** ومعدل المخاطر **{curr_risk:.1f}%**؛ يوصى باتباع التوجيه: <i>"{selected_cat_data['recommendation']}"</i>.
+        1. **Resolve Primary Category Defect:** Data indicates the primary friction driver in **{selected_cat_data['name_en']}** is <i>({df_curr_defects.iloc[-1]['Complaint Root Cause']})</i> with {df_curr_defects.iloc[-1]['Occurrences']} recorded cases; resolving this flaw produces immediate CSAT gains.
+        2. **Merchant Economics:** Department satisfaction stands at **{curr_sat:.1f}%** with risk at **{curr_risk:.1f}%**; follow directive: <i>"{selected_cat_data['recommendation_en']}"</i>.
         """)
 
-
-
-
-# ================= TAB 5: PRODUCT COMPARISON =================
+# ================= TAB 3: PRODUCT COMPARISON =================
 with tab_compare:
-    st.markdown("#### مقارنة تنافسية بين منتجين أمازون جنباً إلى جنب")
-    st.caption("أدخل رابطي منتجين مختلفين أو كودَي ASIN لمقارنة مؤشرات رضا العملاء ومشاعر المراجعات بينهما:")
+    st.markdown("#### Head-to-Head Competitive Product Comparison")
+    st.caption("Enter URLs or ASINs for two competing Amazon products to benchmark customer satisfaction, sentiment distribution, and key risk metrics side-by-side:")
 
     cmp_c1, cmp_c2 = st.columns(2)
     with cmp_c1:
-        st.markdown("##### المنتج الأول (Product A)")
-        url_a = st.text_input("رابط أو ASIN المنتج الأول:", key="cmp_url_a",
-                              placeholder="https://www.amazon.eg/dp/... أو ASIN")
+        st.markdown("##### Product A")
+        url_a = st.text_input("Product A URL or ASIN:", key="cmp_url_a", placeholder="e.g. https://www.amazon.com/dp/... or ASIN")
     with cmp_c2:
-        st.markdown("##### المنتج الثاني (Product B)")
-        url_b = st.text_input("رابط أو ASIN المنتج الثاني:", key="cmp_url_b",
-                              placeholder="https://www.amazon.eg/dp/... أو ASIN")
+        st.markdown("##### Product B")
+        url_b = st.text_input("Product B URL or ASIN:", key="cmp_url_b", placeholder="e.g. https://www.amazon.com/dp/... or ASIN")
 
-    compare_btn = st.button("مقارنة المنتجين الآن", type="primary", use_container_width=False)
+    compare_btn = st.button("Compare Products Now", type="primary", use_container_width=False)
 
     if compare_btn and url_a.strip() and url_b.strip():
         asin_a = extract_asin(url_a)
         asin_b = extract_asin(url_b)
 
         if not asin_a or not asin_b:
-            st.error("يرجى إدخال روابط أو أكواد ASIN صالحة للمنتجين.")
+            st.error("Please enter valid Amazon URLs or 10-character ASINs for both products.")
         else:
-            cmp_prog = st.progress(0, text="جاري جلب بيانات المنتج الأول...")
+            cmp_prog = st.progress(0, text="Fetching Product A reviews and metadata...")
             df_a, src_a, title_a, sim_a = fetch_product_reviews(url_a)
-            cmp_prog.progress(40, text="جاري جلب بيانات المنتج الثاني...")
+            cmp_prog.progress(40, text="Fetching Product B reviews and metadata...")
             df_b, src_b, title_b, sim_b = fetch_product_reviews(url_b)
-            cmp_prog.progress(70, text="جاري تشغيل نماذج الذكاء الاصطناعي...")
+            cmp_prog.progress(70, text="Running AI Sentiment classification on both datasets...")
 
-            # Analyze both
             def _analyze_df(df):
                 sents, confs = [], []
                 for _, row in df.iterrows():
@@ -1767,10 +1732,9 @@ with tab_compare:
 
             df_a = _analyze_df(df_a)
             df_b = _analyze_df(df_b)
-            cmp_prog.progress(100, text="اكتملت المقارنة!")
+            cmp_prog.progress(100, text="Comparison complete!")
             cmp_prog.empty()
 
-            # Compute KPIs for both
             def _kpis(df):
                 total = len(df)
                 pos = (df['AI_Sentiment'] == "Positive").sum()
@@ -1784,10 +1748,8 @@ with tab_compare:
             ta, pa, na, pra, nra, avga, ca = _kpis(df_a)
             tb, pb, nb, prb, nrb, avgb, cb = _kpis(df_b)
 
-            # Winner label
-            winner = "A" if pra > prb else ("B" if prb > pra else "تعادل")
+            winner = "A" if pra > prb else ("B" if prb > pra else "Tie")
 
-            # Detect store categories for both
             cat_cmp_a = detect_store_category(title_a)
             cat_cmp_b = detect_store_category(title_b)
 
@@ -1799,20 +1761,20 @@ with tab_compare:
                 st.markdown(f"""
                 <div style="background:#FFFFFF;border:2px solid #3B82F6;border-radius:12px;padding:16px 18px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                        <span style="font-size:0.72rem;color:#64748B;font-weight:700;text-transform:uppercase;">المنتج الأول (A) {sim_badge_a}</span>
-                        <span style="background:{cat_cmp_a['badge_bg']}; color:{cat_cmp_a['badge_color']}; font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:9999px; display:inline-flex; align-items:center; gap:5px;">{cat_cmp_a['icon']} {cat_cmp_a['name_ar'][:16]}</span>
+                        <span style="font-size:0.72rem;color:#64748B;font-weight:700;text-transform:uppercase;">Product A {sim_badge_a}</span>
+                        <span style="background:{cat_cmp_a['badge_bg']}; color:{cat_cmp_a['badge_color']}; font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:9999px; display:inline-flex; align-items:center; gap:5px;">{cat_cmp_a['icon']} {cat_cmp_a['name_en'][:20]}</span>
                     </div>
                     <div style="font-weight:800;color:#0F172A;font-size:0.95rem;line-height:1.3;">{title_a[:55]}</div>
-                    <div style="font-size:0.78rem;color:#64748B;margin-top:4px;">ASIN: <code>{asin_a}</code> | {ta} مراجعة</div>
+                    <div style="font-size:0.78rem;color:#64748B;margin-top:4px;">ASIN: <code>{asin_a}</code> | {ta} reviews</div>
                 </div>
                 """, unsafe_allow_html=True)
             with hcol2:
                 if winner == "A":
-                    w_color, w_text = "#3B82F6", "الفائز: A"
+                    w_color, w_text = "#3B82F6", "Winner: Product A"
                 elif winner == "B":
-                    w_color, w_text = "#EF4444", "الفائز: B"
+                    w_color, w_text = "#EF4444", "Winner: Product B"
                 else:
-                    w_color, w_text = "#64748B", "تعادل"
+                    w_color, w_text = "#64748B", "Performance Tie"
                 st.markdown(f"""
                 <div style="text-align:center;padding:20px 0;">
                     <div style="font-size:0.78rem;color:#64748B;font-weight:700;margin-bottom:6px;">VS</div>
@@ -1824,42 +1786,42 @@ with tab_compare:
                 st.markdown(f"""
                 <div style="background:#FFFFFF;border:2px solid #EF4444;border-radius:12px;padding:16px 18px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                        <span style="font-size:0.72rem;color:#64748B;font-weight:700;text-transform:uppercase;">المنتج الثاني (B) {sim_badge_b}</span>
-                        <span style="background:{cat_cmp_b['badge_bg']}; color:{cat_cmp_b['badge_color']}; font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:9999px; display:inline-flex; align-items:center; gap:5px;">{cat_cmp_b['icon']} {cat_cmp_b['name_ar'][:16]}</span>
+                        <span style="font-size:0.72rem;color:#64748B;font-weight:700;text-transform:uppercase;">Product B {sim_badge_b}</span>
+                        <span style="background:{cat_cmp_b['badge_bg']}; color:{cat_cmp_b['badge_color']}; font-size:0.72rem; font-weight:800; padding:2px 8px; border-radius:9999px; display:inline-flex; align-items:center; gap:5px;">{cat_cmp_b['icon']} {cat_cmp_b['name_en'][:20]}</span>
                     </div>
                     <div style="font-weight:800;color:#0F172A;font-size:0.95rem;line-height:1.3;">{title_b[:55]}</div>
-                    <div style="font-size:0.78rem;color:#64748B;margin-top:4px;">ASIN: <code>{asin_b}</code> | {tb} مراجعة</div>
+                    <div style="font-size:0.78rem;color:#64748B;margin-top:4px;">ASIN: <code>{asin_b}</code> | {tb} reviews</div>
                 </div>
                 """, unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
 
             # KPI comparison table
-            st.markdown("##### مقارنة المؤشرات الإحصائية الرئيسية")
+            st.markdown("##### Key Statistical Indicators Benchmark")
             metrics_comparison = pd.DataFrame({
-                "المؤشر": ["معدل الرضا (Positive %)", "معدل المخاطر (Negative %)", "متوسط التقييم / 5.0", "متوسط ثقة النموذج %", "إجمالي المراجعات المحللة"],
-                f"المنتج A ({asin_a})": [f"{pra:.1f}%", f"{nra:.1f}%", f"{avga:.2f}", f"{ca:.1f}%", str(ta)],
-                f"المنتج B ({asin_b})": [f"{prb:.1f}%", f"{nrb:.1f}%", f"{avgb:.2f}", f"{cb:.1f}%", str(tb)],
-                "الأفضل": [
-                    f"A" if pra > prb else ("B" if prb > pra else "تعادل"),
-                    f"A" if nra < nrb else ("B" if nrb < nra else "تعادل"),
-                    f"A" if avga > avgb else ("B" if avgb > avga else "تعادل"),
-                    f"A" if ca > cb else ("B" if cb > ca else "تعادل"),
+                "Indicator": ["Customer Satisfaction (CSAT %)", "Defect & Risk Rate (Negative %)", "Average Star Rating / 5.0", "Average Model Confidence %", "Total Analyzed Reviews"],
+                f"Product A ({asin_a})": [f"{pra:.1f}%", f"{nra:.1f}%", f"{avga:.2f}", f"{ca:.1f}%", str(ta)],
+                f"Product B ({asin_b})": [f"{prb:.1f}%", f"{nrb:.1f}%", f"{avgb:.2f}", f"{cb:.1f}%", str(tb)],
+                "Winner": [
+                    f"Product A" if pra > prb else ("Product B" if prb > pra else "Tie"),
+                    f"Product A" if nra < nrb else ("Product B" if nrb < nra else "Tie"),
+                    f"Product A" if avga > avgb else ("Product B" if avgb > avga else "Tie"),
+                    f"Product A" if ca > cb else ("Product B" if cb > ca else "Tie"),
                     "-"
                 ]
             })
             st.dataframe(metrics_comparison, use_container_width=True, hide_index=True)
 
             # Side-by-side donut charts
-            st.markdown("##### توزيع مشاعر العملاء بالمقارنة")
+            st.markdown("##### Comparative Sentiment Distribution")
             chart_col1, chart_col2 = st.columns(2)
             for col, df_x, label_x, pct_x, pos_x, neg_x in [
-                (chart_col1, df_a, f"المنتج A — {title_a[:25]}", pra, pa, na),
-                (chart_col2, df_b, f"المنتج B — {title_b[:25]}", prb, pb, nb)
+                (chart_col1, df_a, f"Product A — {title_a[:25]}", pra, pa, na),
+                (chart_col2, df_b, f"Product B — {title_b[:25]}", prb, pb, nb)
             ]:
                 with col:
                     fig_cmp = go.Figure(data=[go.Pie(
-                        labels=['إيجابي', 'سلبي'],
+                        labels=['Positive', 'Negative'],
                         values=[pos_x, neg_x],
                         hole=.60,
                         marker=dict(colors=['#10B981', '#EF4444']),
@@ -1877,8 +1839,8 @@ with tab_compare:
                     st.plotly_chart(fig_cmp, use_container_width=True)
 
             # Radar chart comparison
-            st.markdown("##### تحليل الأداء الشامل (Radar Chart)")
-            categories = ['رضا العملاء', 'سلامة المنتج', 'التقييم النجمي', 'ثقة النموذج', 'حجم البيانات']
+            st.markdown("##### Holistic Performance Radar Chart")
+            categories = ['Customer CSAT', 'Product Safety', 'Star Rating', 'Model Confidence', 'Review Volume']
             def _normalize(val, min_v=0, max_v=100):
                 return max(0, min(100, val))
             score_norm_a = _normalize(avga / 5.0 * 100)
@@ -1912,39 +1874,36 @@ with tab_compare:
 
             # Summary recommendation
             if winner == "A":
-                rec_text = f"بناءً على التحليل الإحصائي للمشاعر، المنتج <b>A ({title_a[:35]})</b> يتفوق على المنتج B بمعدل رضا أعلى ({pra:.1f}% مقابل {prb:.1f}%)."
+                rec_text = f"Based on statistical sentiment inference, <b>Product A ({title_a[:35]})</b> outperforms Product B with a significantly higher customer satisfaction rate ({pra:.1f}% vs {prb:.1f}%)."
                 rec_color = "#EFF6FF"
                 rec_border = "#3B82F6"
             elif winner == "B":
-                rec_text = f"بناءً على التحليل الإحصائي للمشاعر، المنتج <b>B ({title_b[:35]})</b> يتفوق على المنتج A بمعدل رضا أعلى ({prb:.1f}% مقابل {pra:.1f}%)."
+                rec_text = f"Based on statistical sentiment inference, <b>Product B ({title_b[:35]})</b> outperforms Product A with a significantly higher customer satisfaction rate ({prb:.1f}% vs {pra:.1f}%)."
                 rec_color = "#FEF2F2"
                 rec_border = "#EF4444"
             else:
-                rec_text = f"المنتجان متقاربان في الأداء العام ({pra:.1f}% مقابل {prb:.1f}%). يُنصح بمراجعة المعايير الفرعية لاتخاذ القرار."
+                rec_text = f"Both competing products exhibit closely aligned overall performance ({pra:.1f}% vs {prb:.1f}%). Consult sub-metrics and return risk before completing procurement."
                 rec_color = "#F8FAFC"
                 rec_border = "#64748B"
 
             st.markdown(f"""
             <div style="background:{rec_color};border:1.5px solid {rec_border};border-radius:10px;padding:16px 20px;margin-top:12px;">
-                <div style="font-weight:700;color:#0F172A;font-size:0.95rem;margin-bottom:4px;">التوصية التنافسية:</div>
+                <div style="font-weight:700;color:#0F172A;font-size:0.95rem;margin-bottom:4px;">Competitive Recommendation:</div>
                 <p style="margin:0;color:#334155;font-size:0.9rem;line-height:1.6;">{rec_text}</p>
             </div>
             """, unsafe_allow_html=True)
 
     elif compare_btn:
-        st.warning("يرجى إدخال روابط أو أكواد ASIN للمنتجين أولاً.")
+        st.warning("Please enter valid Amazon URLs or ASINs for both products first.")
     else:
         st.markdown(f"""
         <div style="background:#F8FAFC;border:1.5px dashed #CBD5E1;border-radius:12px;padding:40px 24px;text-align:center;margin-top:20px;">
             <div style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:12px;background:#EFF6FF;margin-bottom:14px;">
                 {SVG_ZAP}
             </div>
-            <h4 style="margin:0 0 8px 0;color:#1E293B;font-weight:700;">مقارنة تنافسية فورية لأي منتجين</h4>
+            <h4 style="margin:0 0 8px 0;color:#1E293B;font-weight:700;">Instant Head-to-Head Product Benchmarking</h4>
             <p style="margin:0 auto;max-width:520px;color:#64748B;font-size:0.9rem;line-height:1.6;">
-                أدخل رابطَي منتجين مختلفين من أمازون أو كودَي ASIN في الحقلين أعلاه، ثم اضغط مقارنة لرؤية تحليل مقارن شامل يتضمن Radar Chart ومؤشرات الرضا جنباً إلى جنب.
+                Paste two different Amazon product URLs or ASINs in the fields above and click Compare to evaluate comparative Radar Charts, sentiment splits, and risk profiles side-by-side.
             </p>
         </div>
         """, unsafe_allow_html=True)
-
-
-
