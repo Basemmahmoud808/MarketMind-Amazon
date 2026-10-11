@@ -452,10 +452,53 @@ def clean_and_translate_author(author: str) -> str:
         return "Verified Amazon Buyer"
     return a
 
+def extract_image_from_html(html: str) -> str:
+    if not html:
+        return ""
+    try:
+        soup = BeautifulSoup(html, 'html.parser')
+        img_node = soup.select_one('#landingImage') or soup.select_one('#imgBlkFront') or soup.select_one('#main-image')
+        if img_node:
+            dyn = img_node.get('data-a-dynamic-image')
+            if dyn:
+                try:
+                    d_map = json.loads(dyn)
+                    if d_map:
+                        return list(d_map.keys())[0]
+                except Exception:
+                    pass
+            src = img_node.get('data-old-hires') or img_node.get('src')
+            if src and "data:image" not in src:
+                return src
+
+        # Regex for dynamic image map
+        m = re.search(r'data-a-dynamic-image=[\'"](\{[^\'"]+\})[\'"]', html)
+        if m:
+            try:
+                unescaped = m.group(1).replace('&quot;', '"')
+                d_map = json.loads(unescaped)
+                if d_map:
+                    return list(d_map.keys())[0]
+            except Exception:
+                pass
+
+        # Regex for large image
+        m_large = re.search(r'[\'"]large[\'"]\s*:\s*[\'"](https://m\.media-amazon\.com/images/I/[^\'"]+\.jpg)[\'"]', html)
+        if m_large:
+            return m_large.group(1)
+
+        # General media amazon regex
+        m_general = re.findall(r'https://m\.media-amazon\.com/images/I/[A-Za-z0-9_\-\+%]+\._AC_[A-Za-z0-9_\-]+_\.jpg', html)
+        if m_general:
+            return m_general[0]
+    except Exception:
+        pass
+    return ""
+
 def fetch_product_reviews(product_input: str, force_refresh: bool = False):
     asin = extract_asin(product_input)
     if not asin:
-        return None, "Invalid Product Identifier", "", False
+        return None, "Invalid Product Identifier", "", False, ""
 
     cache_dir = os.path.join(os.path.dirname(__file__), "data", "scraped_cache")
     os.makedirs(cache_dir, exist_ok=True)
@@ -472,7 +515,8 @@ def fetch_product_reviews(product_input: str, force_refresh: bool = False):
                 c_label = cdata.get("source_label", "Amazon Verified Repository")
                 c_title = cdata.get("title", f"Amazon Product ({asin})")
                 c_sim = cdata.get("is_simulated", False)
-                return c_df, c_label, c_title, c_sim
+                c_img = cdata.get("img_url", "")
+                return c_df, c_label, c_title, c_sim, c_img
         except Exception:
             pass
 
@@ -521,6 +565,7 @@ def fetch_product_reviews(product_input: str, force_refresh: bool = False):
                 continue
 
             soup = BeautifulSoup(html, "html.parser")
+            prod_img_url = extract_image_from_html(html)
             
             # Extract product title
             title_node = soup.select_one("#productTitle") or soup.select_one("h1") or soup.select_one(".product-title")
@@ -630,11 +675,12 @@ def fetch_product_reviews(product_input: str, force_refresh: bool = False):
                             "source_label": f"Amazon Live Feed ({domain})",
                             "title": best_title,
                             "is_simulated": False,
+                            "img_url": prod_img_url,
                             "reviews": live_reviews
                         }, f, ensure_ascii=False, indent=2)
                 except Exception:
                     pass
-                return df_out, f"Amazon Live Feed ({domain})", best_title, False
+                return df_out, f"Amazon Live Feed ({domain})", best_title, False, prod_img_url
         except Exception:
             continue
 
@@ -650,11 +696,12 @@ def fetch_product_reviews(product_input: str, force_refresh: bool = False):
                         "source_label": "Local Amazon Repository",
                         "title": sample_title,
                         "is_simulated": False,
+                        "img_url": "",
                         "reviews": sub[['ProfileName', 'Score', 'Summary', 'Text']].to_dict(orient="records")
                     }, f, ensure_ascii=False, indent=2)
             except Exception:
                 pass
-            return sub, "Local Amazon Repository", sample_title, False
+            return sub, "Local Amazon Repository", sample_title, False, ""
 
     # 3. Dynamic Product-Aware Realistic Sandbox Simulation
     sample_records = [
@@ -672,11 +719,12 @@ def fetch_product_reviews(product_input: str, force_refresh: bool = False):
                 "source_label": "Market Simulation Engine",
                 "title": f"Amazon Product ({asin})",
                 "is_simulated": True,
+                "img_url": "",
                 "reviews": sample_records
             }, f, ensure_ascii=False, indent=2)
     except Exception:
         pass
-    return pd.DataFrame(sample_records), "Market Simulation Engine", f"Amazon Product ({asin})", True
+    return pd.DataFrame(sample_records), "Market Simulation Engine", f"Amazon Product ({asin})", True, ""
 
 def analyze_sentiment_bilingual(text: str, score: int = None):
     # Pure NLP Machine Learning Model Inference (Calibrated Linear SVM + English TF-IDF Vectorizer)
@@ -1099,36 +1147,30 @@ with tab_product:
         else:
             prog_bar = st.progress(0, text="Connecting to Amazon servers...")
             prog_bar.progress(15, text="Fetching product metadata and customer reviews...")
-            reviews_df, source_label, prod_title, is_simulated = fetch_product_reviews(product_link, force_refresh=force_sync)
+            reviews_df, source_label, prod_title, is_simulated, prod_img_url = fetch_product_reviews(product_link, force_refresh=force_sync)
             prog_bar.progress(60, text="Running Calibrated Machine Learning models on review corpus...")
 
-            # Product image URL fetch
-            prod_img_url = ""
-            try:
-                _curl = shutil.which("curl") or shutil.which("curl.exe")
-                _img_domain = "amazon.com"
-                for _d in ["amazon.com", "amazon.eg", "amazon.sa", "amazon.ae"]:
-                    if _d in product_link.lower():
-                        _img_domain = _d
-                        break
-                _img_target = f"https://www.{_img_domain}/dp/{asin}"
-                if _curl:
-                    _r = subprocess.run([_curl, "-s", "-L", "-H",
-                        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        _img_target], capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=6)
-                    _html = _r.stdout
-                else:
-                    _req = urllib.request.Request(_img_target, headers={"User-Agent": "Mozilla/5.0"})
-                    with urllib.request.urlopen(_req, timeout=6) as _resp:
-                        _html = _resp.read().decode("utf-8", errors="ignore")
-                _soup = BeautifulSoup(_html, "html.parser")
-                _img_el = (_soup.find("img", {"id": "landingImage"}) or
-                           _soup.find("img", {"id": "imgBlkFront"}) or
-                           _soup.find("img", {"data-old-hires": True}))
-                if _img_el:
-                    prod_img_url = (_img_el.get("data-old-hires") or _img_el.get("src") or "")
-            except Exception:
-                prod_img_url = ""
+            # Fallback image fetch if not extracted during initial review scrape
+            if not prod_img_url:
+                try:
+                    _curl = shutil.which("curl") or shutil.which("curl.exe")
+                    for _d in ["amazon.co.uk", "amazon.com", "amazon.ae", "amazon.eg", "amazon.sa"]:
+                        _img_target = f"https://www.{_d}/dp/{asin}"
+                        _html = ""
+                        if _curl:
+                            _r = subprocess.run([_curl, "-s", "-L", "-H",
+                                "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+                                _img_target], capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=6)
+                            _html = _r.stdout
+                        else:
+                            _req = urllib.request.Request(_img_target, headers={"User-Agent": "Mozilla/5.0"})
+                            with urllib.request.urlopen(_req, timeout=6) as _resp:
+                                _html = _resp.read().decode("utf-8", errors="ignore")
+                        prod_img_url = extract_image_from_html(_html)
+                        if prod_img_url:
+                            break
+                except Exception:
+                    prod_img_url = ""
 
             # Run Model on All Reviews
             sentiments = []
@@ -1203,32 +1245,27 @@ with tab_product:
             cat_info = detect_store_category(prod_title)
 
             # Product Information Card
-            if prod_img_url:
-                img_col, info_col = st.columns([1, 3])
-                with img_col:
+            # Product Information Card with Image
+            img_col, info_col = st.columns([1.1, 4.2])
+            with img_col:
+                if prod_img_url:
                     st.markdown(f"""
-                    <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:12px; text-align:center; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
-                        <img src="{prod_img_url}" style="max-width:100%; max-height:180px; object-fit:contain; border-radius:8px;" alt="Product Image">
+                    <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:12px; text-align:center; height:100%; min-height:140px; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
+                        <img src="{prod_img_url}" style="max-width:100%; max-height:140px; object-fit:contain; border-radius:8px;" alt="Product Image">
                     </div>
                     """, unsafe_allow_html=True)
-                with info_col:
+                else:
                     st.markdown(f"""
-                    <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:18px 22px; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
-                        <div style="font-size:0.75rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Analyzed Product & Department Classification</div>
-                        <h3 style="margin:0 0 10px 0; color:#0F172A; font-size:1.05rem; font-weight:800; line-height:1.4;">{prod_title}</h3>
-                        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-                            <span style="background:{cat_info['badge_bg']}; color:{cat_info['badge_color']}; border:1px solid {cat_info['badge_color']}33; padding:4px 12px; border-radius:9999px; font-size:0.8rem; font-weight:800;">
-                                {cat_info['icon']} Department: {cat_info['name_en']} (CSAT Benchmark: {cat_info['csat']}%)
-                            </span>
-                            <span style="background:#EFF6FF; color:#1E40AF; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">ASIN: {asin}</span>
-                            <span style="background:#F0FDF4; color:#166534; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{source_label}</span>
-                            <span style="background:#FEF3C7; color:#92400E; padding:4px 12px; border-radius:9999px; font-size:0.78rem; font-weight:700;">{total_revs} Analyzed Reviews</span>
+                    <div style="background:#F8FAFC; border:1.5px dashed #CBD5E1; border-radius:12px; padding:12px; text-align:center; height:100%; min-height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 1px 3px rgba(15,23,42,0.02);">
+                        <div style="width:42px; height:42px; border-radius:10px; background:#EFF6FF; color:#2563EB; display:flex; align-items:center; justify-content:center; margin-bottom:6px;">
+                            {SVG_PACKAGE}
                         </div>
+                        <span style="font-size:0.75rem; font-weight:700; color:#64748B;">ASIN: {asin}</span>
                     </div>
                     """, unsafe_allow_html=True)
-            else:
+            with info_col:
                 st.markdown(f"""
-                <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:18px 22px; margin-bottom:16px; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
+                <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:18px 22px; height:100%; box-shadow:0 1px 3px rgba(15,23,42,0.04);">
                     <div style="font-size:0.75rem; color:#64748B; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;">Analyzed Product & Department Classification</div>
                     <h3 style="margin:0 0 10px 0; color:#0F172A; font-size:1.05rem; font-weight:800; line-height:1.4;">{prod_title}</h3>
                     <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
@@ -1943,9 +1980,9 @@ with tab_compare:
             st.error("Please enter valid Amazon URLs or 10-character ASINs for both products.")
         else:
             cmp_prog = st.progress(0, text="Fetching Product A reviews and metadata...")
-            df_a, src_a, title_a, sim_a = fetch_product_reviews(url_a)
+            df_a, src_a, title_a, sim_a, img_a = fetch_product_reviews(url_a)
             cmp_prog.progress(40, text="Fetching Product B reviews and metadata...")
-            df_b, src_b, title_b, sim_b = fetch_product_reviews(url_b)
+            df_b, src_b, title_b, sim_b, img_b = fetch_product_reviews(url_b)
             cmp_prog.progress(70, text="Running AI Sentiment classification on both datasets...")
 
             def _analyze_df(df):
