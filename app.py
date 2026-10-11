@@ -452,10 +452,29 @@ def clean_and_translate_author(author: str) -> str:
         return "Verified Amazon Buyer"
     return a
 
-def fetch_product_reviews(product_input: str):
+def fetch_product_reviews(product_input: str, force_refresh: bool = False):
     asin = extract_asin(product_input)
     if not asin:
         return None, "Invalid Product Identifier", "", False
+
+    cache_dir = os.path.join(os.path.dirname(__file__), "data", "scraped_cache")
+    os.makedirs(cache_dir, exist_ok=True)
+    cache_file = os.path.join(cache_dir, f"{asin}.json")
+
+    # 0. Check persistent disk cache (guarantees 100% stability across page refreshes)
+    if not force_refresh and os.path.exists(cache_file):
+        try:
+            with open(cache_file, "r", encoding="utf-8") as f:
+                cdata = json.load(f)
+            cached_revs = cdata.get("reviews", [])
+            if cached_revs and len(cached_revs) > 0:
+                c_df = pd.DataFrame(cached_revs)
+                c_label = cdata.get("source_label", "Amazon Verified Repository")
+                c_title = cdata.get("title", f"Amazon Product ({asin})")
+                c_sim = cdata.get("is_simulated", False)
+                return c_df, c_label, c_title, c_sim
+        except Exception:
+            pass
 
     # 1. Live Amazon Fetch
     input_lower = product_input.lower()
@@ -603,7 +622,19 @@ def fetch_product_reviews(product_input: str):
                         })
             
             if len(live_reviews) > 0:
-                return pd.DataFrame(live_reviews), f"Amazon Live Feed ({domain})", best_title, False
+                df_out = pd.DataFrame(live_reviews)
+                try:
+                    with open(cache_file, "w", encoding="utf-8") as f:
+                        json.dump({
+                            "asin": asin,
+                            "source_label": f"Amazon Live Feed ({domain})",
+                            "title": best_title,
+                            "is_simulated": False,
+                            "reviews": live_reviews
+                        }, f, ensure_ascii=False, indent=2)
+                except Exception:
+                    pass
+                return df_out, f"Amazon Live Feed ({domain})", best_title, False
         except Exception:
             continue
 
@@ -612,6 +643,17 @@ def fetch_product_reviews(product_input: str):
         sub = df_raw[df_raw['ProductId'].str.upper() == asin.upper()].copy()
         if len(sub) > 0:
             sample_title = sub['Summary'].dropna().iloc[0] if len(sub['Summary'].dropna()) > 0 else f"Amazon Product ({asin})"
+            try:
+                with open(cache_file, "w", encoding="utf-8") as f:
+                    json.dump({
+                        "asin": asin,
+                        "source_label": "Local Amazon Repository",
+                        "title": sample_title,
+                        "is_simulated": False,
+                        "reviews": sub[['ProfileName', 'Score', 'Summary', 'Text']].to_dict(orient="records")
+                    }, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
             return sub, "Local Amazon Repository", sample_title, False
 
     # 3. Dynamic Product-Aware Realistic Sandbox Simulation
@@ -623,6 +665,17 @@ def fetch_product_reviews(product_input: str):
         {"Score": 2, "ProfileName": "Michael Scott", "Summary": "Minor durability defect after a week", "Text": "Performance was good initially, but encountered an issue with component durability after moderate use."},
         {"Score": 5, "ProfileName": "James Henderson", "Summary": "Exceptional value for price", "Text": "The device is genuine, sleek, and the overall buying experience was thoroughly satisfying."}
     ]
+    try:
+        with open(cache_file, "w", encoding="utf-8") as f:
+            json.dump({
+                "asin": asin,
+                "source_label": "Market Simulation Engine",
+                "title": f"Amazon Product ({asin})",
+                "is_simulated": True,
+                "reviews": sample_records
+            }, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
     return pd.DataFrame(sample_records), "Market Simulation Engine", f"Amazon Product ({asin})", True
 
 def analyze_sentiment_bilingual(text: str, score: int = None):
@@ -1021,6 +1074,7 @@ with tab_product:
             value=st.session_state["input_url"],
             placeholder="e.g. https://www.amazon.com/dp/... or https://www.amazon.eg/dp/... or ASIN (10 chars)"
         )
+        force_sync = st.checkbox("Bypass cache & force live re-fetch from Amazon servers", value=False)
     with c_in2:
         st.write("")
         st.write("")
@@ -1045,7 +1099,7 @@ with tab_product:
         else:
             prog_bar = st.progress(0, text="Connecting to Amazon servers...")
             prog_bar.progress(15, text="Fetching product metadata and customer reviews...")
-            reviews_df, source_label, prod_title, is_simulated = fetch_product_reviews(product_link)
+            reviews_df, source_label, prod_title, is_simulated = fetch_product_reviews(product_link, force_refresh=force_sync)
             prog_bar.progress(60, text="Running Calibrated Machine Learning models on review corpus...")
 
             # Product image URL fetch
