@@ -338,7 +338,7 @@ def fetch_product_reviews(product_input: str):
 
     # 1. Live Amazon Fetch
     input_lower = product_input.lower()
-    base_domains = ["amazon.eg", "amazon.sa", "amazon.ae", "amazon.com", "amazon.co.uk"]
+    base_domains = ["amazon.com", "amazon.co.uk", "amazon.ca", "amazon.com.au", "amazon.ae", "amazon.sa", "amazon.eg"]
     detected_domain = None
     for d in base_domains:
         if d in input_lower:
@@ -348,7 +348,7 @@ def fetch_product_reviews(product_input: str):
     if detected_domain:
         domains = [detected_domain] + [d for d in base_domains if d != detected_domain]
     else:
-        domains = base_domains
+        domains = ["amazon.com", "amazon.co.uk", "amazon.ca", "amazon.ae", "amazon.eg"]
 
     curl_bin = shutil.which("curl") or shutil.which("curl.exe")
     
@@ -361,7 +361,7 @@ def fetch_product_reviews(product_input: str):
                     curl_bin, "-s", "-L",
                     "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
                     "-H", "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-                    "-H", "Accept-Language: ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
+                    "-H", "Accept-Language: en-US,en;q=0.9",
                     url
                 ]
                 res = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=9)
@@ -371,7 +371,7 @@ def fetch_product_reviews(product_input: str):
                     url,
                     headers={
                         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"
+                        "Accept-Language": "en-US,en;q=0.9"
                     }
                 )
                 with urllib.request.urlopen(req, timeout=9) as resp:
@@ -396,8 +396,7 @@ def fetch_product_reviews(product_input: str):
                 
                 score = 5
                 if star:
-                    star_txt = star.text.replace('١', '1').replace('٢', '2').replace('٣', '3').replace('٤', '4').replace('٥', '5')
-                    m = re.search(r'([0-9]+(?:\.[0-9]+)?)', star_txt)
+                    m = re.search(r'([0-9]+(?:\.[0-9]+)?)', star.text)
                     if m:
                         score = int(float(m.group(1)))
                 
@@ -420,7 +419,7 @@ def fetch_product_reviews(product_input: str):
                     cmd_rev = [
                         curl_bin, "-s", "-L",
                         "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                        "-H", "Accept-Language: ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7",
+                        "-H", "Accept-Language: en-US,en;q=0.9",
                         rev_url
                     ]
                     res_rev = subprocess.run(cmd_rev, capture_output=True, text=True, encoding="utf-8", errors="ignore", timeout=9)
@@ -430,7 +429,7 @@ def fetch_product_reviews(product_input: str):
                         rev_url,
                         headers={
                             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-                            "Accept-Language": "ar-EG,ar;q=0.9,en-US;q=0.8,en;q=0.7"
+                            "Accept-Language": "en-US,en;q=0.9"
                         }
                     )
                     with urllib.request.urlopen(req_rev, timeout=9) as resp_rev:
@@ -445,8 +444,7 @@ def fetch_product_reviews(product_input: str):
                     
                     score = 5
                     if star:
-                        star_txt = star.text.replace('١', '1').replace('٢', '2').replace('٣', '3').replace('٤', '4').replace('٥', '5')
-                        m = re.search(r'([0-9]+(?:\.[0-9]+)?)', star_txt)
+                        m = re.search(r'([0-9]+(?:\.[0-9]+)?)', star.text)
                         if m:
                             score = int(float(m.group(1)))
                     
@@ -623,7 +621,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Packaging Leak or Seal Breach in Transit", "Occurrences": 520},
             {"Complaint Root Cause": "Taste / Flavor Expectation Mismatch", "Occurrences": 680}
         ],
-        "keywords": ["coffee", "tea", "chocolate", "snack", "chip", "food", "drink", "sugar", "sauce", "cereal", "pasta", "oil", "spice", "candy", "cookie", "قهوة", "شاي", "شوكولاتة", "سناك", "طعام"]
+        "keywords": ["coffee", "tea", "chocolate", "snack", "chip", "food", "drink", "sugar", "sauce", "cereal", "pasta", "oil", "spice", "candy", "cookie", "beverage", "juice", "cracker", "cereal", "condiment"]
     },
     {
         "id": "electronics",
@@ -652,7 +650,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Incompatible Port / Operating System Mismatch", "Occurrences": 380},
             {"Complaint Root Cause": "Cable or Charging Failure After Early Use", "Occurrences": 510}
         ],
-        "keywords": ["phone", "iphone", "samsung", "charger", "cable", "case", "screen", "headphone", "earphone", "bluetooth", "laptop", "watch", "smart", "usb", "adapter", "powerbank", "controller", "playstation", "ps5", "ps4", "xbox", "nintendo", "gaming", "game", "gamepad", "console", "dualsense", "dualshock", "joystick", "mouse", "keyboard", "monitor", "pc", "mac", "camera", "tv", "speaker", "soundbar", "audio", "wireless", "device", "gadget", "tablet", "ipad", "android", "battery", "هاتف", "سماعة", "بلايستيشن", "العاب", "سوني", "ذراع", "يد تحكم", "شاحن", "كمبيوتر", "لابتوب"]
+        "keywords": ["phone", "iphone", "samsung", "charger", "cable", "case", "screen", "headphone", "earphone", "bluetooth", "laptop", "watch", "smart", "usb", "adapter", "powerbank", "controller", "playstation", "ps5", "ps4", "xbox", "nintendo", "gaming", "game", "gamepad", "console", "dualsense", "dualshock", "joystick", "mouse", "keyboard", "monitor", "pc", "mac", "camera", "tv", "speaker", "soundbar", "audio", "wireless", "device", "gadget", "tablet", "ipad", "android", "battery"]
     },
     {
         "id": "home_kitchen",
@@ -680,7 +678,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Difficult to Clean or Reassemble", "Occurrences": 240},
             {"Complaint Root Cause": "Broken Glass or Components in Transit", "Occurrences": 385}
         ],
-        "keywords": ["kitchen", "pan", "pot", "knife", "blender", "cooker", "home", "cleaning", "mug", "table", "chair", "bed", "towel", "oven", "air fryer", "vacuum", "mop", "pillow", "sheet", "desk", "sofa", "furniture", "lamp", "مطبخ", "خلاط", "قلاية", "منزل", "سرير", "كرسي", "ترابيزة"]
+        "keywords": ["kitchen", "pan", "pot", "knife", "blender", "cooker", "home", "cleaning", "mug", "table", "chair", "bed", "towel", "oven", "air fryer", "vacuum", "mop", "pillow", "sheet", "desk", "sofa", "furniture", "lamp"]
     },
     {
         "id": "health_beauty",
@@ -708,7 +706,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Unpleasant or Overpowering Scent", "Occurrences": 145},
             {"Complaint Root Cause": "Skin Irritation or Sensitivity Reaction", "Occurrences": 195}
         ],
-        "keywords": ["cream", "lotion", "shampoo", "soap", "skin", "care", "hair", "perfume", "fragrance", "serum", "beauty", "cosmetic", "sunscreen", "moisturizer", "makeup", "lipstick", "mascara", "deodorant", "facial", "كريم", "شعر", "عطر", "بشرة", "مكياج", "صابون"]
+        "keywords": ["cream", "lotion", "shampoo", "soap", "skin", "care", "hair", "perfume", "fragrance", "serum", "beauty", "cosmetic", "sunscreen", "moisturizer", "makeup", "lipstick", "mascara", "deodorant", "facial"]
     },
     {
         "id": "pets",
@@ -736,7 +734,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Collar or Harness Sizing Inaccuracy", "Occurrences": 110},
             {"Complaint Root Cause": "Pet Refused Food or Palatability Mismatch", "Occurrences": 150}
         ],
-        "keywords": ["dog", "cat", "pet", "puppy", "kitten", "treat", "collar", "leash", "feed", "litter", "cage", "aquarium", "bird", "fish", "كلب", "قطة", "حيوان", "طعام قطط", "طعام كلاب"]
+        "keywords": ["dog", "cat", "pet", "puppy", "kitten", "treat", "collar", "leash", "feed", "litter", "cage", "aquarium", "bird", "fish"]
     }
 ]
 

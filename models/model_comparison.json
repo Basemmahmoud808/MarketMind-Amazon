@@ -1,83 +1,83 @@
 {
     "best_model": "Linear SVM (Calibrated)",
-    "final_accuracy": 0.9501,
-    "final_f1": 0.9536,
+    "final_accuracy": 0.8969,
+    "final_f1": 0.8962,
     "final_confusion_matrix": [
         [
-            1937,
-            113
+            1183,
+            126
         ],
         [
-            108,
-            2272
+            144,
+            1165
         ]
     ],
     "all_models_comparison": {
         "Multinomial Naive Bayes": {
-            "accuracy": 0.9354,
-            "precision": 0.9155,
-            "recall": 0.9693,
-            "f1_score": 0.9416,
-            "cv_f1_mean": 0.9407,
+            "accuracy": 0.8831,
+            "precision": 0.8751,
+            "recall": 0.8938,
+            "f1_score": 0.8844,
+            "cv_f1_mean": 0.8858,
             "confusion_matrix": [
                 [
-                    1837,
-                    213
+                    1142,
+                    167
                 ],
                 [
-                    73,
-                    2307
+                    139,
+                    1170
                 ]
             ]
         },
         "Logistic Regression": {
-            "accuracy": 0.9481,
-            "precision": 0.9479,
-            "recall": 0.9559,
-            "f1_score": 0.9519,
-            "cv_f1_mean": 0.9481,
+            "accuracy": 0.8953,
+            "precision": 0.9027,
+            "recall": 0.8862,
+            "f1_score": 0.8944,
+            "cv_f1_mean": 0.8912,
             "confusion_matrix": [
                 [
-                    1925,
+                    1184,
                     125
                 ],
                 [
-                    105,
-                    2275
+                    149,
+                    1160
                 ]
             ]
         },
         "Linear SVM (Calibrated)": {
-            "accuracy": 0.9501,
-            "precision": 0.9526,
-            "recall": 0.9546,
-            "f1_score": 0.9536,
-            "cv_f1_mean": 0.9503,
+            "accuracy": 0.8969,
+            "precision": 0.9024,
+            "recall": 0.89,
+            "f1_score": 0.8962,
+            "cv_f1_mean": 0.8895,
             "confusion_matrix": [
                 [
-                    1937,
-                    113
+                    1183,
+                    126
                 ],
                 [
-                    108,
-                    2272
+                    144,
+                    1165
                 ]
             ]
         },
         "Random Forest": {
-            "accuracy": 0.8291,
-            "precision": 0.7658,
-            "recall": 0.9824,
-            "f1_score": 0.8607,
-            "cv_f1_mean": 0.8624,
+            "accuracy": 0.8506,
+            "precision": 0.8553,
+            "recall": 0.8442,
+            "f1_score": 0.8497,
+            "cv_f1_mean": 0.8584,
             "confusion_matrix": [
                 [
-                    1335,
-                    715
+                    1122,
+                    187
                 ],
                 [
-                    42,
-                    2338
+                    204,
+                    1105
                 ]
             ]
         }
