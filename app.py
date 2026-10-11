@@ -652,7 +652,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Incompatible Port / Operating System Mismatch", "Occurrences": 380},
             {"Complaint Root Cause": "Cable or Charging Failure After Early Use", "Occurrences": 510}
         ],
-        "keywords": ["phone", "iphone", "samsung", "charger", "cable", "case", "screen", "headphone", "earphone", "bluetooth", "laptop", "watch", "smart", "usb", "adapter", "powerbank", "هاتف", "سماعة"]
+        "keywords": ["phone", "iphone", "samsung", "charger", "cable", "case", "screen", "headphone", "earphone", "bluetooth", "laptop", "watch", "smart", "usb", "adapter", "powerbank", "controller", "playstation", "ps5", "ps4", "xbox", "nintendo", "gaming", "game", "gamepad", "console", "dualsense", "dualshock", "joystick", "mouse", "keyboard", "monitor", "pc", "mac", "camera", "tv", "speaker", "soundbar", "audio", "wireless", "device", "gadget", "tablet", "ipad", "android", "battery", "هاتف", "سماعة", "بلايستيشن", "العاب", "سوني", "ذراع", "يد تحكم", "شاحن", "كمبيوتر", "لابتوب"]
     },
     {
         "id": "home_kitchen",
@@ -680,7 +680,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Difficult to Clean or Reassemble", "Occurrences": 240},
             {"Complaint Root Cause": "Broken Glass or Components in Transit", "Occurrences": 385}
         ],
-        "keywords": ["kitchen", "pan", "pot", "knife", "blender", "cooker", "home", "cleaning", "mug", "table", "chair", "bed", "towel", "مطبخ", "خلاط"]
+        "keywords": ["kitchen", "pan", "pot", "knife", "blender", "cooker", "home", "cleaning", "mug", "table", "chair", "bed", "towel", "oven", "air fryer", "vacuum", "mop", "pillow", "sheet", "desk", "sofa", "furniture", "lamp", "مطبخ", "خلاط", "قلاية", "منزل", "سرير", "كرسي", "ترابيزة"]
     },
     {
         "id": "health_beauty",
@@ -708,7 +708,7 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Unpleasant or Overpowering Scent", "Occurrences": 145},
             {"Complaint Root Cause": "Skin Irritation or Sensitivity Reaction", "Occurrences": 195}
         ],
-        "keywords": ["cream", "lotion", "shampoo", "soap", "skin", "care", "hair", "perfume", "fragrance", "serum", "beauty", "cosmetic", "كريم", "شعر"]
+        "keywords": ["cream", "lotion", "shampoo", "soap", "skin", "care", "hair", "perfume", "fragrance", "serum", "beauty", "cosmetic", "sunscreen", "moisturizer", "makeup", "lipstick", "mascara", "deodorant", "facial", "كريم", "شعر", "عطر", "بشرة", "مكياج", "صابون"]
     },
     {
         "id": "pets",
@@ -736,19 +736,30 @@ STORE_CATEGORIES_DATA = [
             {"Complaint Root Cause": "Collar or Harness Sizing Inaccuracy", "Occurrences": 110},
             {"Complaint Root Cause": "Pet Refused Food or Palatability Mismatch", "Occurrences": 150}
         ],
-        "keywords": ["dog", "cat", "pet", "puppy", "kitten", "treat", "collar", "leash", "feed", "كلب", "قطة"]
+        "keywords": ["dog", "cat", "pet", "puppy", "kitten", "treat", "collar", "leash", "feed", "litter", "cage", "aquarium", "bird", "fish", "كلب", "قطة", "حيوان", "طعام قطط", "طعام كلاب"]
     }
 ]
 
 def detect_store_category(title):
     if not title:
-        return STORE_CATEGORIES_DATA[0]
+        return STORE_CATEGORIES_DATA[1]
     t = str(title).lower()
+    
+    # Prioritize Electronics & Tech category (gaming, gadgets, mobile, computer peripherals)
+    elec_cat = next((c for c in STORE_CATEGORIES_DATA if c["id"] == "electronics"), STORE_CATEGORIES_DATA[1])
+    for kw in elec_cat["keywords"]:
+        if re.search(r'\b' + re.escape(kw.lower()) + r'\b', t):
+            return elec_cat
+            
+    # Check other categories using whole-word matching to avoid substring bugs (e.g. 'tea' matching 'teal')
     for cat in STORE_CATEGORIES_DATA:
+        if cat["id"] == "electronics":
+            continue
         for kw in cat["keywords"]:
-            if kw in t:
+            if re.search(r'\b' + re.escape(kw.lower()) + r'\b', t):
                 return cat
-    return STORE_CATEGORIES_DATA[0]
+                
+    return elec_cat
 
 def generate_buyer_seller_decision(reviews_df, avg_rating, csat_score, neg_ratio, cat_info=None):
     bm_csat = 78.1
