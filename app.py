@@ -1266,7 +1266,7 @@ with tab_product:
                         <div class="bento-icon bento-icon-emerald">{SVG_TREND_UP}</div>
                     </div>
                     <div class="bento-value" style="color:#059669;">{csat_score:.1f}%</div>
-                    <div class="bento-delta {delta_class}">+ {pos_count} of {total_revs} satisfied ({pos_ratio:.0f}%)</div>
+                    <div class="bento-delta {delta_class}">★ {avg_rating:.1f}/5.0 Stars &bull; {pos_count} of {total_revs} positive ({pos_ratio:.0f}%)</div>
                 </div>
                 """, unsafe_allow_html=True)
             with k3:
@@ -1281,8 +1281,18 @@ with tab_product:
                 </div>
                 """, unsafe_allow_html=True)
             with k4:
-                status_label = "Excellent" if csat_score >= 80 else ("Stable" if csat_score >= 65 else "High Risk")
-                status_color = "#059669" if csat_score >= 80 else ("#D97706" if csat_score >= 65 else "#DC2626")
+                if neg_ratio >= 30:
+                    status_label = "Moderate Risk"
+                    status_color = "#D97706"
+                elif csat_score >= 80:
+                    status_label = "Excellent"
+                    status_color = "#059669"
+                elif csat_score >= 65:
+                    status_label = "Stable"
+                    status_color = "#D97706"
+                else:
+                    status_label = "High Risk"
+                    status_color = "#DC2626"
                 st.markdown(f"""
                 <div class="bento-card">
                     <div class="bento-header">
